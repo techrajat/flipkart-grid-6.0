@@ -26,3 +26,7 @@ Rhubarb-Lip-Sync-1.13.0-Windows/
 .vscode/
 env/
 __pycache__/
+database.csv
+recommender.pkl
+tfidf_matrix.pkl
+tfidf.pkl
