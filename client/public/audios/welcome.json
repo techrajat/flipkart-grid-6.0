@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "soundFile": "C:\\Users\\rajat\\Documents\\Flipkart Grid\\demo\\public\\audios\\welcome.wav",
+    "duration": 2.87
+  },
+  "mouthCues": [
+    { "start": 0.00, "end": 0.11, "value": "X" },
+    { "start": 0.11, "end": 0.22, "value": "E" },
+    { "start": 0.22, "end": 0.29, "value": "F" },
+    { "start": 0.29, "end": 0.43, "value": "B" },
+    { "start": 0.43, "end": 0.57, "value": "C" },
+    { "start": 0.57, "end": 0.68, "value": "B" },
+    { "start": 0.68, "end": 0.80, "value": "C" },
+    { "start": 0.80, "end": 0.87, "value": "D" },
+    { "start": 0.87, "end": 1.15, "value": "F" },
+    { "start": 1.15, "end": 1.27, "value": "X" },
+    { "start": 1.27, "end": 1.41, "value": "B" },
+    { "start": 1.41, "end": 1.48, "value": "C" },
+    { "start": 1.48, "end": 1.58, "value": "D" },
+    { "start": 1.58, "end": 1.62, "value": "C" },
+    { "start": 1.62, "end": 1.70, "value": "A" },
+    { "start": 1.70, "end": 1.75, "value": "B" },
+    { "start": 1.75, "end": 1.87, "value": "F" },
+    { "start": 1.87, "end": 1.94, "value": "B" },
+    { "start": 1.94, "end": 2.01, "value": "D" },
+    { "start": 2.01, "end": 2.08, "value": "B" },
+    { "start": 2.08, "end": 2.16, "value": "A" },
+    { "start": 2.16, "end": 2.54, "value": "B" },
+    { "start": 2.54, "end": 2.87, "value": "X" }
+  ]
+}

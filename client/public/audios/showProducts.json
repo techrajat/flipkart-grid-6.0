@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "soundFile": "C:\\Users\\rajat\\Documents\\Flipkart Grid\\demo\\public\\audios\\showProducts.wav",
+    "duration": 1.56
+  },
+  "mouthCues": [
+    { "start": 0.00, "end": 0.09, "value": "X" },
+    { "start": 0.09, "end": 0.52, "value": "F" },
+    { "start": 0.52, "end": 0.63, "value": "A" },
+    { "start": 0.63, "end": 0.69, "value": "B" },
+    { "start": 0.69, "end": 0.74, "value": "D" },
+    { "start": 0.74, "end": 1.16, "value": "B" },
+    { "start": 1.16, "end": 1.56, "value": "X" }
+  ]
+}
