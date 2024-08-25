@@ -24,3 +24,5 @@ yarn-error.log*
 
 Rhubarb-Lip-Sync-1.13.0-Windows/
 .vscode/
+env/
+__pycache__/
