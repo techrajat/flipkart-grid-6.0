@@ -1,0 +1,43 @@
+/* Assuming you have a separate CSS file or using inline styles */
+
+body {
+  overflow: hidden;
+}
+
+.container{
+  display: flex;
+  width:100%;
+  height:100%;
+  /* background-color: #ffffff; */
+  background-color: black;
+ /* background-image: url(./assets/6.avif);  */
+ /* background-size: cover; 
+ background-position: center; 
+ background-repeat: no-repeat; 
+ background-attachment: fixed;   */
+}
+
+
+.canvas-container {
+
+  position: absolute;
+  /* background-image: url(./assets/6.avif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: fixed; */
+  background-color:black;
+  width:40%;
+  right: 0;
+  height: 100vh;
+  margin: 0 auto;
+}  
+
+
+
+#speakBtn {
+  width: 100px;
+  position: absolute;
+  top: 0;
+  right: 153px;
+}
+

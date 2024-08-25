@@ -1,0 +1,73 @@
+/* src/IntroPage.css */
+.intro-container {
+    min-height: 100vh;
+    width:60vw;
+    background-color:whites;
+    /* background-image: url(../assets/6.avif); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;   */
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    position:absolute;
+  }
+  
+  
+  .intro-box {
+    background-color: #f3f4f6; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    border-radius: 0.5rem; 
+    padding: 2rem; 
+    max-width: 32rem; 
+    
+    text-align: center;
+  }
+
+  
+  .intro-title {
+    width:70%;
+    font-size: 50px; 
+    font-weight: 700;
+    color: #dd911f; 
+    
+  }
+  
+  .intro-text {
+    color: rgb(144, 135, 135); 
+    width:70%;
+    font-size: larger;
+    margin-bottom: 1.5rem;
+  }
+  
+  .intro-button {
+    background-color: #3b82f6; /* Tailwind's bg-blue-500 */
+    color: #ffffff; /* Tailwind's text-white */
+    font-weight: 700; /* Tailwind's font-bold */
+    padding: 0.5rem 1rem; /* Tailwind's py-2 px-4 */
+    border-radius: 9999px; /* Tailwind's rounded-full */
+    margin-top: 1rem; /* Tailwind's mt-4 */
+    cursor: pointer;
+  }
+  
+  .intro-button:hover {
+    background-color: #1d4ed8; /* Tailwind's hover:bg-blue-700 */
+  }
+  
+   
+  /* .salesman-image-container {
+    background-color: #e5e7eb;
+    border-radius: 9999px; 
+    padding: 1rem; 
+  } 
+  
+  .salesman-image {
+    width: 4rem; 
+    height: 4rem; 
+    border-radius: 9999px; 
+  }
+   */
