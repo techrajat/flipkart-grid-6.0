@@ -1,5 +1,4 @@
 import React from 'react';
-import './Product.css'; // Import the CSS file
 
 export const Product=()=> {
   return (

@@ -3,18 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@heroicons/react": "^2.1.5",
+    "@react-three/drei": "9.75.0",
+    "@react-three/fiber": "8.13.3",
+    "@splinetool/react-spline": "^4.0.0",
+    "@splinetool/runtime": "^1.9.20",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/three": "0.152.1",
+    "framer-motion": "^11.3.30",
+    "leva": "^0.9.35",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "@react-three/drei": "9.75.0",
-    "@react-three/fiber": "8.13.3",
-    "@types/three": "0.152.1",
-    "leva": "^0.9.35",
-    "three": "0.153.0"
+    "react-starfield": "^1.0.3",
+    "three": "0.153.0",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,5 +45,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.10"
   }
 }
