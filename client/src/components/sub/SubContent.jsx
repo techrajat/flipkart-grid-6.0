@@ -1,20 +1,21 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { slideInFromLeft, slideInFromRight, slideInFromTop } from '../../utils/motion';
+import { slideInFromLeft, slideInFromTop } from '../../utils/motion';
 import { SparklesIcon } from "@heroicons/react/24/solid";
 import HeroContent from './HeroContent';
+import ProductsPage from '../../pages/Products';
 
-const subContent = () => {
+const SubContent = () => {
   return (
     <motion.div
       initial="hidden"
       animate="visible"
-      className=" h-full flex flex-row items-center justify-center px-20 mt-40 w-full z-[20]"
+      className="h-full flex flex-col lg:flex-row items-center justify-center px-6 lg:px-10 mt-10 lg:mt-20 w-full z-[20] overflow-hidden"
     >
-      <div className=" flex flex-col gap-5 justify-center text-start my-0 top-2">
+      {/* <div className="flex flex-col gap-5 justify-center text-center lg:text-start w-full lg:w-[50%] max-w-full">
         <motion.div
           variants={slideInFromTop}
-          className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9]"
+          className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] flex items-center justify-center lg:justify-start"
         >
           <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
           <h1 className="Welcome-text text-[13px]">
@@ -24,7 +25,7 @@ const subContent = () => {
 
         <motion.div
           variants={slideInFromLeft(0.5)}
-          className="flex flex-col gap-6 mt-6 text-6xl font-bold text-white max-w-[600px] w-auto h-auto"
+          className="flex flex-col gap-6 mt-6 text-4xl lg:text-6xl font-bold text-white max-w-full"
         >
           <span>
             Providing
@@ -38,26 +39,29 @@ const subContent = () => {
 
         <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-lg text-yellow-300 my-5 max-w-[600px]"
+          className="text-lg lg:text-xl text-yellow-300 my-5 max-w-full"
         >
-          I&apos;m a Full Stack Software Engineer with experience in Website,
-          Mobile, and Software development. Check out my projects and skills.
+          I&apos;m your Virtual Salesman. I can help you find the best products and assist you 
+          throughout your online shopping experience.
         </motion.p>
         <motion.a
           variants={slideInFromLeft(1)}
-          className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
+          className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px] w-full"
         >
           Learn More!
         </motion.a>
+      </div> */}
+
+      <div className='w-[60%]'>
+        <ProductsPage/>
+
       </div>
 
-     <div className="relative bottom-[150px] flex h-[800px] w-[500px]">
-      <HeroContent/>
-     </div>
-
-
+      <div className="relative flex w-full lg:w-[40%] max-w-full h-auto lg:h-full justify-center mt-10 lg:mt-0">
+        <HeroContent />
+      </div>
     </motion.div>
   );
-}
+};
 
-export default subContent;
+export default SubContent;
