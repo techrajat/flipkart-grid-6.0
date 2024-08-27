@@ -1,7 +1,6 @@
 
 import React from "react";
 import blackhole from "../assets/blackhole.webm";
-import HeroContent from "./sub/HeroContent";
 import SubContent from "./sub/SubContent";
 
 
