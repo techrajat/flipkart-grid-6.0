@@ -6,6 +6,7 @@ import StarsCanvas from "./components/StarBackground";
 import background from "../src/assets/banner-bg.png";
 import ProductsPage from "./pages/Products";
 import Navbar from "./components/Navbar";
+import RecommendedProducts from "./pages/RecommendedProducts";
 
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<ProductsPage/>} />
+        <Route path="/recommendated" element={<RecommendedProducts/>} />
       </Routes>
     </div>
   );
