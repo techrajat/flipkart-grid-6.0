@@ -4,6 +4,7 @@ import { slideInFromLeft, slideInFromTop } from '../../utils/motion';
 import { SparklesIcon } from "@heroicons/react/24/solid";
 import HeroContent from './HeroContent';
 import ProductsPage from '../../pages/Products';
+import RecommendedProduct from '../../pages/RecommendedProducts';
 
 const SubContent = () => {
   return (
@@ -52,12 +53,13 @@ const SubContent = () => {
         </motion.a>
       </div> */}
 
-      <div className='w-[60%]'>
-        <ProductsPage/>
+      <div className='lg:w-[70%]'>
+        {/* <ProductsPage/> */}
+        <RecommendedProduct/>
 
       </div>
 
-      <div className="relative flex w-full lg:w-[40%] max-w-full h-auto lg:h-full justify-center mt-10 lg:mt-0">
+      <div className="relative flex w-full lg:w-[30%] max-w-full h-auto lg:h-full justify-center mt-10 lg:mt-0">
         <HeroContent />
       </div>
     </motion.div>
