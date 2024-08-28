@@ -66,8 +66,8 @@ export default function Login(props) {
       </div>
 
       {/* Login Form (30% width) */}
-      <div className="w-5/12 h-full flex items-center justify-center bg-richblack-950 z-[100]">
-        <div className="bg-richblack-950  p-8 rounded-lg shadow-lg w-full max-w-md">
+      <div className="w-5/12 h-full flex items-center justify-center bg-transparent z-[10]">
+        <div className="bg-transparent  p-8 rounded-lg shadow-lg w-full max-w-md">
           <h2 className="text-2xl font-bold mb-6 text-yellow-100 text-center">Login</h2>
           <form>
             <div className="mb-4">
