@@ -84,7 +84,7 @@ def range_response(lower, upper):
     return random.choice(response)
 
 # Filter products and responses :-
-def filter(desc, n):
+def filter_response(desc, n):
     uniq_ids = search_result(desc, n)
     nums = re.findall(r'\d+', desc)
     nums = [int(num) for num in nums]
