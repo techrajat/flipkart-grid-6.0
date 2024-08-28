@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Canvas } from "@react-three/fiber";
 import { Experience } from "../../components/Experience";
 
-const HeroContent = () => {
-  const [playAudio, setPlayAudio] = useState(true);
-  const [script, setScript] = useState("welcome");
+const HeroContent = (props) => {
+  // const [playAudio, setPlayAudio] = useState(true);
+  // const [script, setScript] = useState("welcome");
+  
   const [mediaStream, setMediaStream] = useState(null);
 
   async function startMicrophone() {
@@ -28,12 +29,12 @@ const HeroContent = () => {
   }
 
   const myFunc = () => {
-    if (script === "welcome") {
-      setScript("listen");
+    if (props.script === "welcome") {
+      props.setScript("listen");
       startMicrophone();
-    } else if (script === "listen") {
+    } else if (props.script === "listen") {
       stopMicrophone();
-      setScript("showProducts");
+      props.setScript("showProducts");
     }
   };
 
@@ -44,7 +45,7 @@ const HeroContent = () => {
         shadows 
         camera={{ position: [0, -2, 18], fov: 18 }}
       >
-        <Experience playAudio={playAudio} script={script} />
+        <Experience playAudio={props.playAudio} script={props.script} />
       </Canvas>
     </div>
   );

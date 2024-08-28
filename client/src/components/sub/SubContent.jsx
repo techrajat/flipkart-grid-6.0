@@ -6,7 +6,7 @@ import HeroContent from './HeroContent';
 import ProductsPage from '../../pages/Products';
 import RecommendedProduct from '../../pages/RecommendedProducts';
 
-const SubContent = () => {
+const SubContent = (props) => {
   return (
     <motion.div
       initial="hidden"
@@ -60,7 +60,7 @@ const SubContent = () => {
       </div>
 
       <div className="relative flex w-full lg:w-[30%] max-w-full h-auto lg:h-full justify-center mt-10 lg:mt-0">
-        <HeroContent />
+        <HeroContent playAudio={props.playAudio} setPlayAudio={props.setPlayAudio} script={props.script} setScript={props.setScript} />
       </div>
     </motion.div>
   );
