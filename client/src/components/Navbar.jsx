@@ -36,7 +36,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <nav className="relative bottom-8 text-white py-3 h-2 z-[100] w-full">
-      <div className="container mx-auto flex justify-between items-center h-full">
+      <div className="container mx-auto flex justify-between items-center h-full  shadow-lg shadow-blue-100">
         <div className="text-3xl font-bold text-white">
           <Link to="/">FlipBuddy Shopping App</Link>
         </div>

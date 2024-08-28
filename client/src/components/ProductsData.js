@@ -290,6 +290,18 @@
       "brand": "Kennel",
       "product_specifications": "{\"product_specification\"=>[{\"key\"=>\"Pet Type\", \"value\"=>\"Dog\"}, {\"key\"=>\"Brand\", \"value\"=>\"Kennel\"}, {\"key\"=>\"Suitable For\", \"value\"=>\"Adult, Young\"}, {\"key\"=>\"Activity Type\", \"value\"=>\"Training\"}, {\"key\"=>\"Model Number\", \"value\"=>\"A35\"}, {\"key\"=>\"Type\", \"value\"=>\"Rubber Toy\"}, {\"key\"=>\"Model Name\", \"value\"=>\"Rubber Dumbell With Bell - Small\"}, {\"key\"=>\"Material\", \"value\"=>\"Rubber\"}, {\"key\"=>\"Chewable\", \"value\"=>\"No\"}, {\"key\"=>\"Color\", \"value\"=>\"Multicolor\"}, {\"key\"=>\"Weight\", \"value\"=>\"159 g\"}, {\"key\"=>\"Sales Package\", \"value\"=>\"Hard Toy\"}, {\"key\"=>\"Pack of\", \"value\"=>\"1\"}]}"
     }
+    ,
+    {
+      id: 1,
+      name: 'Sample Product 1',
+      price: '29.99',
+      description: 'This is a description for Sample Product 1. It’s a fantastic product with amazing features.Key Features of SWAGGA Women Clogs Occasion: Ethnic Material: Leather Color: Brown, White Heel Height: 0,Specifications of SWAGGA Women Clogs General Occasion Ethnic Ideal For Women Sandal Details Type Clogs Heel Height 0 inch Outer Material Leather Color Brown, White13',
+      "image": [
+        "http://img6a.flixcart.com/image/sandal/h/7/v/brown-white17-swagga0040-swagga-47-original-imaeh6zhxgymnwjx.jpeg",
+        "http://img5a.flixcart.com/image/sandal/h/7/v/brown-white17-swagga0040-swagga-47-original-imaeh6zhxgymnwjx.jpeg",
+        "http://img5a.flixcart.com/image/sandal/e/f/6/brown-black001-swagga0025-swagga-36-original-imaeh6zhsqwh8gaz.jpeg"
+      ],
+    },
 
 
 

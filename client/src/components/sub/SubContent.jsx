@@ -5,6 +5,7 @@ import { SparklesIcon } from "@heroicons/react/24/solid";
 import HeroContent from './HeroContent';
 import ProductsPage from '../../pages/Products';
 import RecommendedProduct from '../../pages/RecommendedProducts';
+import ProductDescription from '../../pages/ProductDescription';
 
 const SubContent = () => {
   return (
@@ -54,8 +55,10 @@ const SubContent = () => {
       </div> */}
 
       <div className='lg:w-[70%]'>
-        {/* <ProductsPage/> */}
-        <RecommendedProduct/>
+        <ProductsPage/>
+        {/* <RecommendedProduct/> */}
+        {/* <ProductDescription/> */}
+
 
       </div>
 
