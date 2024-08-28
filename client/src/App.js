@@ -7,6 +7,7 @@ import StarsCanvas from "./components/StarBackground";
 import ProductsPage from "./pages/Products";
 import Navbar from "./components/Navbar";
 import RecommendedProducts from "./pages/RecommendedProducts";
+import ProductDescription from "./pages/ProductDescription";
 
 
 export default function App() {
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/login" element={<Login setLogged={setLogged} logoutModal={logoutModal} setLogoutModal={setLogoutModal} setPlayAudio={setPlayAudio} setScript={setScript} />} />
         <Route path="/products" element={<ProductsPage/>} />
         <Route path="/recommendated" element={<RecommendedProducts/>} />
+        <Route path="/product/:id" element={<ProductDescription/>} />
       </Routes>
     </div>
   );
