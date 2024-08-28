@@ -38,8 +38,8 @@ export default function Login(props) {
         const user = data.user;
         localStorage.setItem('user', JSON.stringify(user));
         props.setLogged(true);
-        props.setPlayAudio(true);
         props.setScript("welcome");
+        props.setText("Hello Rajat! How are you?");
         navigate('/');
       }
       else {

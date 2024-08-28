@@ -61,7 +61,7 @@ const SubContent = (props) => {
       </div>
 
       <div className="relative flex w-full lg:w-[30%] max-w-full h-auto lg:h-full justify-center mt-10 lg:mt-0">
-        <HeroContent playAudio={props.playAudio} setPlayAudio={props.setPlayAudio} script={props.script} setScript={props.setScript} />
+        <HeroContent text={props.text} setText={props.setText} script={props.script} setScript={props.setScript} />
       </div>
     </motion.div>
   );
