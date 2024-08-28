@@ -78,10 +78,10 @@ export function Avatar(props) {
       if (script === "welcome") {
         setAnimation("Greeting");
       }
-      else if(script === "listen") {
+      else if (script === "listen") {
         setAnimation("Listening");
       }
-      else if(script === "showProducts") {
+      else if (script === "showProducts") {
         setAnimation("Talking");
       }
       else {
@@ -97,7 +97,13 @@ export function Avatar(props) {
 
   useEffect(() => {
     actions[animation].reset().fadeIn(0.5).play();
-    return () => actions[animation].fadeOut(0.5);
+    return () => {
+      try {
+        actions[animation].fadeOut(0.5);
+      } catch (error) {
+        console.error("Error occurred:", error);
+      }
+    };
   }, [animation]);
 
   return (
