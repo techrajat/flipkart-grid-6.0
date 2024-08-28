@@ -79,11 +79,7 @@ const ProductDescription = () => {
         </button>
       </div>
 
-      {/* <div className = "w-[30%]">
-          <HeroContent/>
-      </div> */}
-
-
+  
 
     </div>
   );

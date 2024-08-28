@@ -55,7 +55,7 @@ const Navbar = (props) => {
   }
 
   return (
-    <nav className="relative bottom-8 text-white py-3 h-2 z-[100] w-full">
+    <nav className="relative bottom-8 text-white py-3 h-2 z-[120] w-full">
       <div className="container mx-auto flex justify-between items-center h-full  shadow-lg shadow-blue-100">
         <div className="text-3xl font-bold text-white">
           <Link to="/">FlipBuddy Shopping App</Link>
