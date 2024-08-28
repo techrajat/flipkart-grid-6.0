@@ -42,13 +42,12 @@ export function Avatar(props) {
   const group = useRef();
   const { actions } = useAnimations([idleAnimation[0], greetingAnimation[0], talkingAnimation[0], listeningAnimation[0], rightTurnAnimation[0]], group);
 
-  // const [playAudio, setPlayAudio] = useState(false);
-  // const [script, setScript] = useState("recommend");
   const playAudio = props.playAudio;
   const script = props.script;
 
   const audio = useMemo(() => new Audio(`/audios/${script}.wav`), [script]);
-  const jsonFile = useLoader(THREE.FileLoader, `audios/${script}.json`);
+  let jsonFile = "";
+  jsonFile = useLoader(THREE.FileLoader, `audios/${script}.json`);
   const lipsync = JSON.parse(jsonFile);
 
   useFrame(() => {
