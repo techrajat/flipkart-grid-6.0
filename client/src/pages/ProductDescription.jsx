@@ -44,21 +44,21 @@ const ProductDescription = () => {
     <div className="flex flex-col lg:flex-row gap-10 min-h-screen w-full p-4 bg-gray-100 mt-20 z-[120]">
 
       {/* Product Image Section with Swiper Slider */}
-      <div className="lg:w-4/12 flex justify-center items-center bg-transparent rounded-lg shadow-lg shadow-yellow-25 border-2 z-[120]">
+      <div className="lg:w-[40%] w-full flex justify-center items-center bg-transparent rounded-lg shadow-lg shadow-yellow-25 border-2 z-[120]">
         <Swiper
           modules={[Navigation, Pagination]}
           navigation
           pagination={{ clickable: true }}
           spaceBetween={30}
           slidesPerView={1}
-          className="h-[300px] w-full"
+          className="h-[400px] w-full"
         >
           {product != null && images !=null &&  images.map((img, index) => (
             <SwiperSlide key={index}>
               <img
                 src={img}
                 alt={`Slide ${index + 1}`}
-                className="h-[500px] relative left-8 transition-transform transform hover:scale-105 border-2 p-2 border-t-yellow-200 shadow-md shadow-blue-400"
+                className="h-[300px] lg:w-full relative  transition-transform transform hover:scale-105 border-2 p-2 border-t-yellow-200 shadow-md shadow-blue-400"
               />
             </SwiperSlide>
           ))}
@@ -66,11 +66,11 @@ const ProductDescription = () => {
       </div>
 
       {/* Product Details Section */}
-      <div className="lg:w-4/12 w-full text-richblack-100 flex flex-col justify-center p-6 gap-4">
+      <div className="lg:w-[50%] w-full text-richblack-100 flex flex-col justify-center p-6 gap-4">
         <h1 className="text-4xl font-bold mb-4">{product.product_name}</h1>
         <p className="text-2xl text-green-600 mb-4">₹{product.discounted_price}</p>
         <p className="text-gray-700 mb-6">{product.description.length > 300
-    ? `${product.description.substring(0,300)}...`: product.description}</p>
+    ? `${product.description.substring(0,200)}...`: product.description}</p>
         <button className="bg-blue-500 hover:bg-blue-200 text-white py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
           Add to Cart
         </button>
