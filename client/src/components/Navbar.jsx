@@ -60,7 +60,7 @@ const Navbar = (props) => {
         <div className="text-3xl font-bold text-white">
           <Link to="/">FlipBuddy Shopping App</Link>
         </div>
-        <div className="space-x-4">
+        <div className="space-x-6">
           <Link to="/" className="hover:text-yellow-100">
             Home
           </Link>
@@ -72,6 +72,9 @@ const Navbar = (props) => {
           </Link>
           <Link to="/contact" className="hover:text-yellow-100">
             Contact Us
+          </Link>
+          <Link to="/login" className="hover:text-richblack-900 px-4 py-2 rounded-full bg-yellow-50">
+           Login
           </Link>
           {props.logged === true && <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={log_out}>
             {name ? name : ""}

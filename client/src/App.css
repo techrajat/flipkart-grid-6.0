@@ -54,7 +54,7 @@ html, body {
 }
 
 .swiper_container {
-  height: 10rem;
+  height: 15rem;
   padding: 2rem 0;
   position: relative;
 }
@@ -80,9 +80,12 @@ html, body {
 }
 
 .swiper-slide img {
-  width: 25rem;
-  height: 15rem;
-  border-radius: 2rem;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  width: 35rem;
+  height: 25rem;
+  border-radius: 1rem;
   object-fit: cover;
 }
 

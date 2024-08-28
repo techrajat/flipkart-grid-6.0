@@ -14,14 +14,14 @@ const SubContent = (props) => {
       animate="visible"
       className="h-full flex flex-col lg:flex-row items-center justify-center px-6 lg:px-10 mt-10 lg:mt-20 w-full z-[20] overflow-hidden"
     >
-      {/* <div className="flex flex-col gap-5 justify-center text-center lg:text-start w-full lg:w-[50%] max-w-full">
+      <div className="relative left-[100px] flex flex-col gap-5 justify-center text-center lg:text-start w-full lg:w-[70%] max-w-full">
         <motion.div
           variants={slideInFromTop}
           className="Welcome-box py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] flex items-center justify-center lg:justify-start"
         >
           <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
           <h1 className="Welcome-text text-[13px]">
-            Fullstack Developer Portfolio
+            Flipbuddy
           </h1>
         </motion.div>
 
@@ -35,7 +35,7 @@ const SubContent = (props) => {
               {" "}
               the best{" "}
             </span>
-            project experience
+           online experience
           </span>
         </motion.div>
 
@@ -50,15 +50,13 @@ const SubContent = (props) => {
           variants={slideInFromLeft(1)}
           className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px] w-full"
         >
-          Learn More!
         </motion.a>
-      </div> */}
+      </div>
 
       <div className='lg:w-[70%]'>
-        <ProductsPage/>
+        {/* <ProductsPage/> */}
         {/* <RecommendedProduct/> */}
         {/* <ProductDescription/> */}
-
 
       </div>
 
