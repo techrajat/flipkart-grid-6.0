@@ -3,8 +3,6 @@ import { Canvas } from "@react-three/fiber";
 import { Experience } from "../../components/Experience";
 
 const HeroContent = (props) => {
-  // const [playAudio, setPlayAudio] = useState(true);
-  // const [script, setScript] = useState("welcome");
   
   const [mediaStream, setMediaStream] = useState(null);
 
@@ -28,12 +26,14 @@ const HeroContent = (props) => {
     setMediaStream(null);
   }
 
-  const myFunc = () => {
+  const changeScript = () => {
     if (props.script === "welcome") {
+      props.setText("Speak. I am listening.");
       props.setScript("listen");
       startMicrophone();
     } else if (props.script === "listen") {
       stopMicrophone();
+      props.setText("Here are your products.");
       props.setScript("showProducts");
     }
   };
@@ -41,11 +41,11 @@ const HeroContent = (props) => {
   return (
     <div className=" w-full h-full">
       <Canvas 
-        onClick={myFunc} 
+        onClick={changeScript} 
         shadows 
         camera={{ position: [0, -2, 18], fov: 18 }}
       >
-        <Experience playAudio={props.playAudio} script={props.script} />
+        <Experience text={props.text} script={props.script} />
       </Canvas>
     </div>
   );

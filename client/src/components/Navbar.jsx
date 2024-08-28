@@ -70,8 +70,8 @@ const Navbar = (props) => {
           <Link to="/cart" className="hover:text-yellow-100">
             Cart
           </Link>
-          <Link to="/contact" className="hover:text-yellow-100">
-            Contact Us
+          <Link to="/login" className="hover:text-yellow-100">
+            Login
           </Link>
           {props.logged === true && <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={log_out}>
             {name ? name : ""}
