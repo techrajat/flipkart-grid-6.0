@@ -38,7 +38,7 @@ export default function Login(props) {
         const user = data.user;
         localStorage.setItem('user', JSON.stringify(user));
         props.setLogged(true);
-        props.setScript("welcome");
+        props.setAnimation("Greeting");
         props.setText("Hello Rajat! How are you?");
         navigate('/');
       }
@@ -66,7 +66,7 @@ export default function Login(props) {
       </div>
 
       {/* Login Form (30% width) */}
-      <div className="w-5/12 h-full flex items-center justify-center bg-transparent z-[10]">
+      <div className="w-5/12 h-full flex items-center justify-center bg-transparent z-[120]">
         <div className="bg-transparent  p-8 rounded-lg shadow-lg w-full max-w-md">
           <h2 className="text-2xl font-bold mb-6 text-yellow-100 text-center">Login</h2>
           <form>

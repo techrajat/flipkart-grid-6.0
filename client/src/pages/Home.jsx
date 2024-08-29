@@ -15,7 +15,7 @@ export default function Home(props) {
   return (
     <main className="h-full w-full">
       <div className="flex flex-col gap-20">
-        <Hero text={props.text} setText={props.setText} script={props.script} setScript={props.setScript} />
+        <Hero text={props.text} setText={props.setText} animation={props.animation} setAnimation={props.setAnimation} />
       </div>
     </main>
   )};

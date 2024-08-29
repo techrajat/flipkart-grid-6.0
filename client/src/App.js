@@ -13,7 +13,7 @@ import ProductDescription from "./pages/ProductDescription";
 export default function App() {
   const [logged, setLogged] = useState(false);
   const [logoutModal, setLogoutModal] = useState(false);
-  const [script, setScript] = useState("nothing");
+  const [animation, setAnimation] = useState("Idle");
   const [text, setText] = useState("");
 
   const logout = () => {
@@ -27,8 +27,8 @@ export default function App() {
        <Navbar logged={logged} setLogged={setLogged} logout={logout} setLogoutModal={setLogoutModal}/>
        <StarsCanvas />
       <Routes>
-        <Route path="/" element={<Home text={text} setText={setText} script={script} setScript={setScript} logged={logged} setLogged={setLogged} />} />
-        <Route path="/login" element={<Login setText={setText} setLogged={setLogged} logoutModal={logoutModal} setLogoutModal={setLogoutModal} setScript={setScript} />} />
+        <Route path="/" element={<Home text={text} setText={setText} animation={animation} setAnimation={setAnimation} logged={logged} setLogged={setLogged} />} />
+        <Route path="/login" element={<Login setText={setText} setLogged={setLogged} logoutModal={logoutModal} setLogoutModal={setLogoutModal} setAnimation={setAnimation} />} />
         <Route path="/products" element={<ProductsPage/>} />
         <Route path="/recommendated" element={<RecommendedProducts/>} />
         <Route path="/product/:id" element={<ProductDescription/>} />
