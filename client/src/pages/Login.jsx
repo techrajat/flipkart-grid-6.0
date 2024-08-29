@@ -39,7 +39,7 @@ export default function Login(props) {
         localStorage.setItem('user', JSON.stringify(user));
         props.setLogged(true);
         props.setAnimation("Greeting");
-        props.setText("Hello Rajat! How are you?");
+        props.setText(`Hello ${user.name.split(' ')[0]}! How are you?`);
         navigate('/recommend');
       }
       else {

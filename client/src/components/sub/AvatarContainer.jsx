@@ -1,26 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { Canvas } from "@react-three/fiber";
 import { Experience } from "../Experience";
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 const AvatarContainer = (props) => {
   const [listen, setListen] = useState(false);
 
   const {
     transcript,
-    listening,
-    browserSupportsSpeechRecognition
+    listening
   } = useSpeechRecognition();
+
+  const getIntent = async (transcript) => {
+    const response = await fetch("http://127.0.0.1:5000/predict", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `query=${encodeURIComponent(transcript)}`
+    });
+    if (response.status === 200) {
+      const res = await response.json();
+      props.setIntent(res.intent);
+    }
+  };
 
   useEffect(()=>{
     if (!listening && transcript) {
-        console.log('Final Transcript:', transcript);
+        props.setAudioTranscript(transcript);
+        getIntent(transcript);
       }
-  }, [listening, transcript])
-
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
-  }
+      //eslint-disable-next-line
+  }, [listening, transcript]);
 
   const changeScript = () => {
     props.setText("Speak.");
