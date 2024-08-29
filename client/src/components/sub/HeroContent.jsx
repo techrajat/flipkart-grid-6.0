@@ -1,41 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Canvas } from "@react-three/fiber";
 import { Experience } from "../../components/Experience";
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 const HeroContent = (props) => {
-  
-  const [mediaStream, setMediaStream] = useState(null);
+  const [listen, setListen] = useState(false);
 
-  async function startMicrophone() {
-    try {
-      let newMediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      setMediaStream(newMediaStream);
-      console.log('Microphone access granted');
-    } catch (error) {
-      console.error('Microphone access denied', error);
-    }
-  }
+  const {
+    transcript,
+    listening,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
 
-  function stopMicrophone() {
-    if (mediaStream) {
-      mediaStream.getTracks().forEach(track => {
-        track.stop();
-        console.log('Stopped track:', track);
-      });
-    }
-    setMediaStream(null);
+  useEffect(()=>{
+    if (!listening && transcript) {
+        console.log('Final Transcript:', transcript);
+      }
+  }, [listening, transcript])
+
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
   }
 
   const changeScript = () => {
-    if (props.script === "welcome") {
-      props.setText("Speak. I am listening.");
-      props.setScript("listen");
-      startMicrophone();
-    } else if (props.script === "listen") {
-      stopMicrophone();
-      props.setText("Here are your products.");
-      props.setScript("showProducts");
-    }
+    props.setText("Speak.");
+    props.setAnimation("Listening");
+    setListen(!listen);
+    SpeechRecognition.startListening();
   };
 
   return (
@@ -45,7 +36,7 @@ const HeroContent = (props) => {
         shadows 
         camera={{ position: [0, -2, 18], fov: 18 }}
       >
-        <Experience text={props.text} script={props.script} />
+        <Experience text={props.text} animation={props.animation} listen={listen} />
       </Canvas>
     </div>
   );

@@ -81,7 +81,7 @@ export function Avatar(props) {
     return () => {
       synth.cancel();
     };
-  }, [props.text]);
+  }, [props.text, props.listen]);
 
   const handlePlay = () => {
     if (utterance) {
@@ -95,21 +95,9 @@ export function Avatar(props) {
   useEffect(() => {
     if (utterance) {
       handlePlay();
-      switch (props.script) {
-        case "welcome":
-          setAnimation("Greeting");
-          break;
-        case "listen":
-          setAnimation("Listening");
-          break;
-        case "showProducts":
-          setAnimation("Talking");
-          break;
-        default:
-          setAnimation("Idle");
-          break;
-      }
-    } else {
+      setAnimation(props.animation);
+    } 
+    else {
       setAnimation("Idle");
     }
     //eslint-disable-next-line
