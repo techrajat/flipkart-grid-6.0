@@ -9,7 +9,8 @@ import Navbar from "./components/Navbar";
 import RecommendedProducts from "./pages/RecommendedProducts";
 import ProductDescription from "./pages/ProductDescription";
 import AvatarContainer from './components/sub/AvatarContainer';
-import DescPage from './components/sub/DescPage';
+import DescPage from './pages/DescPage';
+import CheckoutPage from './pages/Checkout';
 
 
 export default function App() {
@@ -47,6 +48,7 @@ export default function App() {
         <Route path="/products" element={<ProductsPage audioTranscript={audioTranscript} setText={setText} />} />
         <Route path="/login" element={<Login setText={setText} setLogged={setLogged} logoutModal={logoutModal} setLogoutModal={setLogoutModal} setAnimation={setAnimation} />} />
         <Route path="/product/:id" element={<ProductDescription />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     </div>
   );
