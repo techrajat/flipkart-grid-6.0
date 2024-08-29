@@ -1,3 +1,4 @@
+
 import { React, useEffect, useState } from 'react';
 import Spline from '@splinetool/react-spline';
 import Modal from 'react-modal';
@@ -39,7 +40,7 @@ export default function Login(props) {
         localStorage.setItem('user', JSON.stringify(user));
         props.setLogged(true);
         props.setAnimation("Greeting");
-        props.setText(`Hello ${user.name.split(' ')[0]}! How are you?`);
+        props.setText("Hello Rajat! How are you?");
         navigate('/recommend');
       }
       else {
@@ -58,15 +59,15 @@ export default function Login(props) {
   return (
     <div className="flex h-screen w-screen">
       {/* Spline Animation (70% width) */}
-      <div className="w-7/12 h-full">
+      {/* <div className="w-7/12 h-full">
         {/* <Spline scene="https://prod.spline.design/eh3gZzwZZj9sGf9R/scene.splinecode" /> */}
         {/* <Spline scene="https://prod.spline.design/ffrW6F75Z29jNfeP/scene.splinecode" /> */}
-        <Spline scene="https://prod.spline.design/UUUtEBsOn9aEhGDb/scene.splinecode" />
+        {/* <Spline scene="https://prod.spline.design/UUUtEBsOn9aEhGDb/scene.splinecode" /> */}
 
-      </div>
+      {/* </div> */}
 
       {/* Login Form (30% width) */}
-      <div className="w-5/12 h-full flex items-center justify-center bg-transparent z-[300]">
+      <div className="w-full h-full flex items-center justify-center bg-transparent z-[300]">
         <div className="bg-transparent  p-8 rounded-lg shadow-lg w-full max-w-md">
           <h2 className="text-2xl font-bold mb-6 text-yellow-100 text-center">Login</h2>
           <form>
@@ -105,7 +106,7 @@ export default function Login(props) {
               </label>
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between relative bottom-10">
               <button
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="button"
@@ -125,8 +126,8 @@ export default function Login(props) {
                   <button onClick={() => { props.setLogoutModal(false) }} id="logoutModalClose"><i className="fa-solid fa-xmark"></i></button>
                   <p className="modalMessage">You have been logged out. Please login again.</p>
                 </Modal>
-                <div className="container">
-                  <h1>Sign in with Google</h1>
+                <div className="container relative ">
+                  
                   <button type="button" className="login-with-google-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => googleSignIn()}>
                     Sign in with Google
                   </button>
