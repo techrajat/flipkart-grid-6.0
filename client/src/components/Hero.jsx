@@ -1,7 +1,7 @@
 
 import React from "react";
 import blackhole from "../assets/blackhole.webm";
-import SubContent from "./sub/SubContent";
+import SubContent from "./sub/DescPage";
 
 
 const Hero = (props) => {

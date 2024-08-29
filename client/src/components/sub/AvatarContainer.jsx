@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Canvas } from "@react-three/fiber";
-import { Experience } from "../../components/Experience";
+import { Experience } from "../Experience";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
-const HeroContent = (props) => {
+const AvatarContainer = (props) => {
   const [listen, setListen] = useState(false);
 
   const {
@@ -30,7 +30,7 @@ const HeroContent = (props) => {
   };
 
   return (
-    <div className=" w-full h-full">
+    <div className="w-full h-full">
       <Canvas 
         onClick={changeScript} 
         shadows 
@@ -42,4 +42,4 @@ const HeroContent = (props) => {
   );
 }
 
-export default HeroContent;
+export default AvatarContainer;
