@@ -26,6 +26,7 @@ const ProductDescription = (props) => {
       const res = await response.json();
       setProduct(res.product);
       setImages(Array.isArray(res.product.image) ? res.product.image : [res.product.image]);
+      props.setCurrProduct(id);
     }
   };
 
@@ -36,6 +37,13 @@ const ProductDescription = (props) => {
     getProduct();
     //eslint-disable-next-line
   }, [id]);
+
+  useEffect(()=>{
+    if(props.negotiatedPrice !== 0 && props.negotiatedPrice !== product.retail_price) {
+      document.getElementById('retailPrice').innerHTML = `<del>₹${product.retail_price}</del> ₹${props.negotiatedPrice}`;
+    }
+    //eslint-disable-next-line
+  }, [props.negotiatedPrice]);
 
   if (!product) {
     return (
@@ -93,7 +101,7 @@ const ProductDescription = (props) => {
       {/* Product Details Section */}
       <div className="lg:w-[50%] w-full text-richblack-100 flex flex-col justify-center p-6 gap-4">
         <h1 className="text-4xl font-bold mb-4">{product.product_name}</h1>
-        <p className="text-2xl text-green-600 mb-4">₹{product.discounted_price}</p>
+        <p id="retailPrice" className="text-2xl text-green-600 mb-4">₹{product.retail_price}</p>
         <p className="text-gray-700 mb-6">
           {product.description.length > 300 ? `${product.description.substring(0, 200)}...` : product.description}
         </p>

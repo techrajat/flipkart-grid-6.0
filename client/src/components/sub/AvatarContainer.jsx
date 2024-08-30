@@ -10,6 +10,22 @@ const AvatarContainer = (props) => {
     transcript,
     listening
   } = useSpeechRecognition();
+  
+  const getNegotiatedResponse = async () => {
+    const response = await fetch("http://127.0.0.1:5000/negotiate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": localStorage.getItem('token')
+      },
+      body: `query=${encodeURIComponent(transcript)}&uniq_id=${encodeURIComponent(props.currProduct)}`
+    });
+    if (response.status === 200) {
+      const res = await response.json();
+      props.setText(res.response);
+      props.setNegotiatedPrice(res.newPrice);
+    }
+  }
 
   const getIntent = async (transcript) => {
     const response = await fetch("http://127.0.0.1:5000/predict", {
@@ -20,6 +36,9 @@ const AvatarContainer = (props) => {
     if (response.status === 200) {
       const res = await response.json();
       props.setIntent(res.intent);
+      if (res.intent === "negotiation") {
+        getNegotiatedResponse();
+      }
     }
   };
 

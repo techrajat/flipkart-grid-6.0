@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import ProductsSlider from '../components/sub/ProductSlider';
 
-
-
 const ProductsPage = (props) => {
   const [products, setProducts] = useState([]);
 
   const updateSearchString = async () => {
-    const response = await fetch("http://127.0.0.1:5000/setstring", {
+    await fetch("http://127.0.0.1:5000/setstring", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -15,9 +13,6 @@ const ProductsPage = (props) => {
       },
       body: `str=${encodeURIComponent(props.audioTranscript)}`
     });
-    if (response.status === 200) {
-      console.log("Search string updated successfully.");
-    }
   };
 
   const getProducts = async () => {

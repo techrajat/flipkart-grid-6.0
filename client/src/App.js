@@ -22,6 +22,8 @@ export default function App() {
   const [text, setText] = useState("");
   const [audioTranscript, setAudioTranscript] = useState("");
   const [intent, setIntent] = useState("");
+  const [negotiatedPrice, setNegotiatedPrice] = useState(0);
+  const [currProduct, setCurrProduct] = useState(null);
 
   const logout = () => {
     setLogged(false);
@@ -29,18 +31,19 @@ export default function App() {
     localStorage.removeItem('user');
   }
 
-  useEffect(()=>{
-    if(intent === "show_products") {
+  useEffect(() => {
+    if (intent === "show_products") {
       navigate('/products');
+      setIntent("");
     }
     //eslint-disable-next-line
-  }, [intent, audioTranscript]);
+  }, [intent]);
 
   return (
     <div className="max-h-screen min-w-screen flex flex-col font-inter bg-[#030014] overflow-y-hidden overflow-x-hidden">
       <Navbar logged={logged} setLogged={setLogged} logout={logout} setLogoutModal={setLogoutModal} />
       <div className="absolute flex w-full lg:w-[30%] max-w-full h-auto lg:h-full justify-center z-[200] top-20 right-0">
-        <AvatarContainer text={text} setText={setText} setAudioTranscript={setAudioTranscript} intent={intent} setIntent={setIntent} animation={animation} setAnimation={setAnimation} />
+        <AvatarContainer text={text} setText={setText} setAudioTranscript={setAudioTranscript} intent={intent} setIntent={setIntent} animation={animation} setAnimation={setAnimation} currProduct={currProduct} setNegotiatedPrice={setNegotiatedPrice} />
       </div>
       <StarsCanvas />
       <Routes>
@@ -48,7 +51,7 @@ export default function App() {
         <Route path="/recommend" element={<RecommendedProducts setLogged={setLogged} />} />
         <Route path="/products" element={<ProductsPage setLogged={setLogged} audioTranscript={audioTranscript} setText={setText} />} />
         <Route path="/login" element={<Login setText={setText} setLogged={setLogged} logoutModal={logoutModal} setLogoutModal={setLogoutModal} setAnimation={setAnimation} />} />
-        <Route path="/product/:id" element={<ProductDescription setLogged={setLogged} />} />
+        <Route path="/product/:id" element={<ProductDescription setLogged={setLogged} setCurrProduct={setCurrProduct} negotiatedPrice={negotiatedPrice} setNegotiatedPrice={setNegotiatedPrice} intent={intent} setIntent={setIntent} />} />
         <Route path="/checkout" element={<CheckoutPage setLogged={setLogged} />} />
         <Route path="/cartitems" element={<CartPage />} />
       </Routes>
