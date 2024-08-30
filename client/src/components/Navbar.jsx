@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { googleLogout } from '@react-oauth/google';
-import heroImage from '../assets/hero-image.png';
 
 const Navbar = (props) => {
   const navigate = useNavigate();
@@ -32,14 +31,9 @@ const Navbar = (props) => {
   return (
     <nav className="relative bottom-8 text-white py-3 h-2 z-[500] w-full">
       <div className="container mx-auto flex justify-between items-center h-full">
-        <Link className="text-3xl flex gap-4 items-center justify-center font-bold text-blue-100 px-4 py-2 border-b-2 border-blue-200 shadow-md shadow-pink-200">
-        <img
-        src={heroImage} 
-        alt="Logo"
-        className="h-10 w-20"
-      />
+        <div className="text-3xl flex gap-4 items-center justify-center font-bold text-white px-4 py-2 border-b-2 border-blue-200 shadow-md shadow-pink-200">
           <Link to="/">FlipBuddy Shopping App</Link>
-        </Link>
+        </div>
         <div className=" flex gap-4 space-x-6 ">
           <Link to="/" className="hover:text-yellow-100 px-4 py-2 shadow-md shadow-caribbeangreen-100">
             Home

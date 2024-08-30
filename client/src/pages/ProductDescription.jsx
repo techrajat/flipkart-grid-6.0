@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import toast from "react-hot-toast";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -61,7 +62,7 @@ const ProductDescription = (props) => {
       headers: { "Authorization": localStorage.getItem('token') }
     });
     if (data.status === 200) {
-      alert('Product added to cart');
+      toast.success('Item added to cart');
     }
   };
 

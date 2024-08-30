@@ -47,7 +47,7 @@ const ProductSlider = ({ products }) => {
         })}
 
         <div className="swiper-controls">
-          <div className="swiper-button-prev slider-arrow">
+          <div className="swiper-button-prev slider-arrow ">
             <ion-icon name="arrow-back-outline"></ion-icon>
           </div>
           <div className="swiper-button-next slider-arrow">

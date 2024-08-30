@@ -4,6 +4,8 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import App from './App';
+import { Toaster } from "react-hot-toast";
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,6 +13,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
     <App />
+    <Toaster/>
     </BrowserRouter>
   </React.StrictMode>
   </GoogleOAuthProvider>
