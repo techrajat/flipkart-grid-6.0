@@ -28,7 +28,7 @@ const RecommendProducts = (props) => {
   }, []);
 
   return (
-    <div className="relative h-screen w-[70%] overflow-auto z-[100] flex flex-col  top-[150px] mt-5">
+    <div className="relative h-screen w-[70%] overflow-auto z-[100] flex flex-col  top-[150px] mt-5 left-14">
         <div className='relative top-[50px]'>
           <h1 className="text-yellow-200 text-5xl font-bold fixed top-20 left-10 z-[50] pt-10"> Top picks just for you</h1>
        </div>

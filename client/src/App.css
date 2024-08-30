@@ -8,6 +8,11 @@ html {
   scroll-behavior: smooth;
 }
 
+#root {
+  height: 100vh;
+  overflow: hidden;
+}
+
 html, body {
   /* height:auto; */
   margin:0;
