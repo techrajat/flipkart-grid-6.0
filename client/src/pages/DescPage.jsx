@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { slideInFromLeft, slideInFromTop } from '../utils/motion';
 import { SparklesIcon } from "@heroicons/react/24/solid";
 
-const DescPage = () => {
+const DescPage = (props) => {
+  useEffect(()=>{
+    if (localStorage.getItem('token')) {
+      props.setLogged(true);
+    }
+    //eslint-disable-next-line
+  }, []);
+
   return (
     <motion.div
       initial="hidden"

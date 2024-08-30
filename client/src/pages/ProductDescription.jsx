@@ -11,23 +11,31 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const ProductDescription = () => {
+const ProductDescription = (props) => {
   const { id } = useParams();
   const navigate = useNavigate();  // Initialize useNavigate
   const [product, setProduct] = useState(null);
   const [images, setImages] = useState([]);
 
-  useEffect(() => {
-    const storedProductId = localStorage.getItem('selectedProductId');
-    console.log(storedProductId);
-
-    const fetchedProduct = products.find((p) => p.uniq_id === storedProductId);
-    console.log(fetchedProduct);
-
-    if (fetchedProduct) {
-      setProduct(fetchedProduct);
-      setImages(Array.isArray(fetchedProduct.image) ? fetchedProduct.image : [fetchedProduct.image]);
+  const getProduct = async () => {
+    const response = await fetch("http://127.0.0.1:5000/getproduct", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `uniq_id=${encodeURIComponent(id)}`
+    });
+    if (response.status === 200) {
+      const res = await response.json();
+      setProduct(res.product);
+      setImages(Array.isArray(res.product.image) ? res.product.image : [res.product.image]);
     }
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      props.setLogged(true);
+    }
+    getProduct();
+    //eslint-disable-next-line
   }, [id]);
 
   if (!product) {

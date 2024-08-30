@@ -38,11 +38,13 @@ const ProductSlider = ({ products }) => {
         modules={[EffectCoverflow, Pagination, Navigation]}
         className="swiper-container"
       >
-        {products.map((product, index) => (
-          <SwiperSlide key={index} className="shadow-md shadow-yellow-200">
-            <ProductCard product={product} />
-          </SwiperSlide>
-        ))}
+        {products.map((product, index) => {
+          if (product !== null)
+            return <SwiperSlide key={index} className="shadow-md shadow-yellow-200">
+              <ProductCard product={product} />
+            </SwiperSlide>
+          return <></>
+        })}
 
         <div className="swiper-controls">
           <div className="swiper-button-prev slider-arrow">
