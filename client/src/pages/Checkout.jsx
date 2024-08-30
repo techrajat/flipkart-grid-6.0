@@ -1,19 +1,37 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect } from "react";
+import { products } from "../components/ProductsData";
 
 const CheckoutPage = (props) => {
   const [shippingInfo, setShippingInfo] = useState({
-    name: '',
-    address: '',
-    city: '',
-    state: '',
-    zip: '',
+    name: "",
+    address: "",
+    city: "",
+    state: "",
+    zip: "",
   });
 
   const [paymentInfo, setPaymentInfo] = useState({
-    cardNumber: '',
-    expiryDate: '',
-    cvv: '',
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
   });
+
+  const [selectedProducts, setSelectedProducts] = useState([]);
+
+  useEffect(() => {
+    const savedCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const fetchedProducts = savedCartItems.map((cartItem) =>
+      products.find((p) => p.uniq_id === cartItem.uniq_id)
+    );
+
+    setSelectedProducts(
+      fetchedProducts.map((product, index) => ({
+        ...product,
+        quantity: savedCartItems[index].quantity,
+      })).filter(Boolean) // Filter out undefined products
+    );
+  }, []);
 
   const handleShippingChange = (e) => {
     const { name, value } = e.target;
@@ -27,8 +45,9 @@ const CheckoutPage = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Shipping Info:', shippingInfo);
-    console.log('Payment Info:', paymentInfo);
+    console.log("Shipping Info:", shippingInfo);
+    console.log("Payment Info:", paymentInfo);
+    console.log("Selected Products:", selectedProducts);
     // Implement further actions like sending the data to a server or payment gateway
   };
 
@@ -39,15 +58,24 @@ const CheckoutPage = (props) => {
     //eslint-disable-next-line
   }, []);
 
+  const calculateTotal = () => {
+    return selectedProducts.reduce((total, product) => total + product.discounted_price * product.quantity, 0);
+  };
+
   return (
-    <div className="relative min-h-screen w-full p-6 flex justify-center items-center bg-transparent z-[500]">
+    <div className="relative min-h-screen p-6 flex justify-start items-center bg-transparent z-[100]">
       <div className="w-full max-w-[70%] bg-transparent p-6 rounded-lg shadow-lg text-caribbeangreen-25">
-        <h1 className="text-3xl font-bold mb-6">Checkout</h1>
-        <form onSubmit={handleSubmit} className="space-y-8 flex flex-row">
-          <div className="flex flex-col lg:flex-row gap-10">
+        <h1 className="text-5xl font-bold mb-6 text-center">Checkout</h1>
+        <form
+          onSubmit={handleSubmit}
+          className="relative space-y-8 flex flex-row w-full gap-10"
+        >
+          <div className="flex lg:flex-col gap-10 w-[60%]">
             {/* Shipping Information */}
             <div className="flex-1 bg-transparent p-6 rounded-lg shadow-lg shadow-yellow-200">
-              <h2 className="text-2xl font-semibold mb-4">Shipping Information</h2>
+              <h2 className="text-2xl font-semibold mb-4">
+                Shipping Information
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
                   type="text"
@@ -97,20 +125,11 @@ const CheckoutPage = (props) => {
               </div>
             </div>
 
-            {/* Review Your Order */}
-            <div className="flex-1 bg-transparent p-6 rounded-lg shadow-lg shadow-yellow-200">
-              <h2 className="text-2xl font-semibold mb-4">Review Your Order</h2>
-              <div className="border-t border-gray-300 pt-4">
-                <p className="text-lg font-semibold">Item Summary:</p>
-                {/* Here, you would typically map over the cart items and display them */}
-                <p className="text-gray-700">1 x Example Product - ₹999</p>
-                <p className="text-gray-700 font-semibold">Total: ₹999</p>
-              </div>
-            </div>
-
             {/* Payment Information */}
             <div className="flex-1 bg-transparent p-6 rounded-lg shadow-lg shadow-blue-200">
-              <h2 className="text-2xl font-semibold mb-4">Payment Information</h2>
+              <h2 className="text-2xl font-semibold mb-4">
+                Payment Information
+              </h2>
               <input
                 type="text"
                 name="cardNumber"
@@ -143,12 +162,40 @@ const CheckoutPage = (props) => {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="bg-blue-500 text-white py-3 px-6 rounded-lg shadow-md hover:bg-blue-600 transition-colors"
-          >
-            Place Order
-          </button>
+          <div className="flex items-center justify-between w-[40%] h-full">
+            {/* Review Your Order */}
+            <div className="flex-1 flex flex-col justify-between bg-transparent p-6 rounded-lg shadow-lg shadow-caribbeangreen-200">
+              <h2 className="text-2xl font-semibold mb-4">Review Your Order</h2>
+              <div className="border-t border-gray-300 pt-4">
+                <p className="text-lg font-semibold">Item Summary:</p>
+                {selectedProducts.map((product) => (
+                  <div key={product.uniq_id} className="flex items-center gap-4 mb-4">
+                    <img
+                      src={product.image[0]}
+                      alt={product.product_name}
+                      className="w-24 h-24 object-cover rounded-md shadow-md"
+                    />
+                    <div>
+                      <p className="text-gray-700 font-semibold">
+                        {product.product_name}
+                      </p>
+                      <p className="text-gray-500">Quantity: {product.quantity}</p>
+                      <p className="text-gray-700">₹{product.discounted_price * product.quantity}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="border-t border-gray-300 pt-4">
+                <p className="text-lg font-semibold">Total: ₹{calculateTotal()}</p>
+              </div>
+              <button
+                type="submit"
+                className="bg-blue-500 text-white py-3 px-6 mt-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors"
+              >
+                Complete Purchase
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </div>

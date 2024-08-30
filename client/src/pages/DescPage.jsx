@@ -4,6 +4,7 @@ import { slideInFromLeft, slideInFromTop } from '../utils/motion';
 import { SparklesIcon } from "@heroicons/react/24/solid";
 
 const DescPage = (props) => {
+
   useEffect(()=>{
     if (localStorage.getItem('token')) {
       props.setLogged(true);
@@ -17,8 +18,8 @@ const DescPage = (props) => {
       animate="visible"
       className="h-screen flex flex-col lg:flex-row items-center justify-center w-full z-[20] overflow-hidden"
     >
-      <div className="relative flex w-full h-full justify-center lg:justify-start items-center">
-        <div className="flex flex-col gap-5 justify-center text-center lg:text-start w-full lg:w-[70%] max-w-full p-5">
+      <div className="relative flex w-full h-full justify-center lg:justify-start items-center left-10">
+        <div className="flex flex-col gap-5 justify-center text-center lg:text-start w-full lg:w-[70%] max-w-full p-5 shadow-lg shadow-blue-100">
           <motion.div
             variants={slideInFromTop}
             className="Welcome-box relative left-20 py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] flex items-center justify-center lg:justify-start"
