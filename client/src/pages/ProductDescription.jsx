@@ -52,6 +52,7 @@ const ProductDescription = (props) => {
     navigate('/checkout');
   };
 
+  
   return (
     <div className="flex flex-col w-[70%] lg:flex-row gap-10 min-h-screen p-4 bg-gray-100 mt-20 z-[120]">
       {/* Product Image Section with Swiper Slider */}

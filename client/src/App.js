@@ -11,6 +11,7 @@ import ProductDescription from "./pages/ProductDescription";
 import AvatarContainer from './components/sub/AvatarContainer';
 import DescPage from './pages/DescPage';
 import CheckoutPage from './pages/Checkout';
+import CartPage from './pages/CartPage';
 
 
 export default function App() {
@@ -49,6 +50,7 @@ export default function App() {
         <Route path="/login" element={<Login setText={setText} setLogged={setLogged} logoutModal={logoutModal} setLogoutModal={setLogoutModal} setAnimation={setAnimation} />} />
         <Route path="/product/:id" element={<ProductDescription setLogged={setLogged} />} />
         <Route path="/checkout" element={<CheckoutPage setLogged={setLogged} />} />
+        <Route path="/cartitems" element={<CartPage />} />
       </Routes>
     </div>
   );
