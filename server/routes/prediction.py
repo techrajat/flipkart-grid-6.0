@@ -12,3 +12,17 @@ def predict():
         return {"intent": intent}, 200
     except:
         return {"error": "Server error"}, 500
+
+# Endpoint to generate response for negotiation
+@prediction_bp.route("/negotiate", methods=['POST'])
+def negotiate():
+    try:
+        user = request.environ['user']
+        if not user:
+            return {"error": "User not found"}, 400
+        query = request.form['query']
+        uniq_id = request.form['uniq_id']
+        res = intent_response.response(query, uniq_id)
+        return {"newPrice": res[0], "response": res[1]}, 200
+    except:
+        return {"error": "Server error"}, 500
