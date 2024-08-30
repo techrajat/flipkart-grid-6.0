@@ -53,7 +53,7 @@ export default function App() {
         <Route path="/login" element={<Login setText={setText} setLogged={setLogged} logoutModal={logoutModal} setLogoutModal={setLogoutModal} setAnimation={setAnimation} />} />
         <Route path="/product/:id" element={<ProductDescription setLogged={setLogged} setCurrProduct={setCurrProduct} negotiatedPrice={negotiatedPrice} setNegotiatedPrice={setNegotiatedPrice} intent={intent} setIntent={setIntent} />} />
         <Route path="/checkout" element={<CheckoutPage setLogged={setLogged} />} />
-        <Route path="/cartitems" element={<CartPage />} />
+        <Route path="/cartitems" element={<CartPage setLogged={setLogged} />} />
       </Routes>
     </div>
   );

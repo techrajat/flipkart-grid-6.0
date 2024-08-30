@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
-// Import Swiper components and modules
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 const ProductDescription = (props) => {
   const { id } = useParams();
-  const navigate = useNavigate();  // Initialize useNavigate
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [images, setImages] = useState([]);
 
@@ -38,8 +34,8 @@ const ProductDescription = (props) => {
     //eslint-disable-next-line
   }, [id]);
 
-  useEffect(()=>{
-    if(props.negotiatedPrice !== 0 && props.negotiatedPrice !== product.retail_price) {
+  useEffect(() => {
+    if (props.negotiatedPrice !== 0 && props.negotiatedPrice !== product.retail_price) {
       document.getElementById('retailPrice').innerHTML = `<del>₹${product.retail_price}</del> ₹${props.negotiatedPrice}`;
     }
     //eslint-disable-next-line
@@ -59,21 +55,16 @@ const ProductDescription = (props) => {
     navigate('/checkout');
   };
 
-  const handleAddToCart = () => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    const existingProduct = cart.find(item => item.uniq_id === product.uniq_id);
-
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-    } else {
-      cart.push({ ...product, quantity: 1 });
+  const handleAddToCart = async () => {
+    let data = await fetch(`http://127.0.0.1:5000/addtocart/${id}`, {
+      method: "GET",
+      headers: { "Authorization": localStorage.getItem('token') }
+    });
+    if (data.status === 200) {
+      alert('Product added to cart');
     }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-    alert('Product added to cart');
   };
-  
+
   return (
     <div className="flex flex-col w-[70%] lg:flex-row gap-10 min-h-screen p-4 bg-gray-100 mt-20 z-[120]">
       {/* Product Image Section with Swiper Slider */}
@@ -108,7 +99,7 @@ const ProductDescription = (props) => {
         <button className="bg-blue-500 hover:bg-blue-200 text-white py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105" onClick={handleAddToCart}>
           Add to Cart
         </button>
-        <button 
+        <button
           className="bg-yellow-500 hover:bg-yellow-200 text-white py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105"
           onClick={handleBuyNow}  // Add onClick handler
         >
