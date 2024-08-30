@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import toast from "react-hot-toast";
 
 // Import Swiper components and modules
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -71,7 +72,7 @@ const ProductDescription = (props) => {
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
-    alert('Product added to cart');
+    toast.success('Item added to cart');
   };
   
   return (

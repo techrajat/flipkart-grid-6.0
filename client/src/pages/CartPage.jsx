@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -26,6 +28,7 @@ const CartPage = () => {
     const updatedCart = cartItems.filter((cartItem) => cartItem.uniq_id !== id);
     setCartItems(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+    toast.success('Item removed');
   };
 
   const handleUpdateQuantity = (id, quantity) => {
@@ -34,6 +37,7 @@ const CartPage = () => {
     );
     setCartItems(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
+    toast.success('Item updated')
   };
 
   const calculateTotal = () => {

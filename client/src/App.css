@@ -88,8 +88,8 @@ html, body {
   display: flex;
   justify-items: center;
   align-items: center;
-  width: 35rem;
-  height: 25rem;
+  width: 25rem;
+  height: 15rem;
   border-radius: 1rem;
   object-fit: cover;
 }
@@ -171,4 +171,14 @@ html, body {
 
 .swiper-pagination .swiper-pagination-bullet-active {
   background: var(--primary);
+}
+
+/* Custom scrollbar styles */
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Hide scrollbar on Chrome, Safari, and Opera */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar on Firefox */
 }

@@ -27,12 +27,15 @@ const RecommendProducts = (props) => {
     //eslint-disable-next-line
   }, []);
 
+
   return (
-    <div className="relative h-screen w-[70%] overflow-auto z-[100] flex flex-col  top-[150px] mt-5 left-14">
+    <div className="relative h-screen w-[70%] overflow-hidden z-[100] flex flex-col  top-[150px] mt-5 left-14">
         <div className='relative top-[50px]'>
-          <h1 className="text-yellow-200 text-5xl font-bold fixed top-20 left-10 z-[50] pt-10"> Top picks just for you</h1>
+          <h1 className="text-richblack-50 text-3xl font-bold fixed top-20 z-[50] pt-10">Top picks just for you</h1>
        </div>
+       <div className='overflow-y-scroll no-scrollbar'>
         <ProductList products={products} />
+       </div>
       
     </div>
   );
