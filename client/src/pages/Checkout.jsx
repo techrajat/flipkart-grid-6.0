@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const CheckoutPage = () => {
+const CheckoutPage = (props) => {
   const [shippingInfo, setShippingInfo] = useState({
     name: '',
     address: '',
@@ -31,6 +31,13 @@ const CheckoutPage = () => {
     console.log('Payment Info:', paymentInfo);
     // Implement further actions like sending the data to a server or payment gateway
   };
+
+  useEffect(()=>{
+    if (localStorage.getItem('token')) {
+      props.setLogged(true);
+    }
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <div className="relative min-h-screen w-full p-6 flex justify-center items-center bg-transparent z-[500]">

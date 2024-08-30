@@ -43,12 +43,12 @@ export default function App() {
       </div>
       <StarsCanvas />
       <Routes>
-        <Route path="/" element={<DescPage />} />
-        <Route path="/recommend" element={<RecommendedProducts />} />
-        <Route path="/products" element={<ProductsPage audioTranscript={audioTranscript} setText={setText} />} />
+        <Route path="/" element={<DescPage setLogged={setLogged} />} />
+        <Route path="/recommend" element={<RecommendedProducts setLogged={setLogged} />} />
+        <Route path="/products" element={<ProductsPage setLogged={setLogged} audioTranscript={audioTranscript} setText={setText} />} />
         <Route path="/login" element={<Login setText={setText} setLogged={setLogged} logoutModal={logoutModal} setLogoutModal={setLogoutModal} setAnimation={setAnimation} />} />
-        <Route path="/product/:id" element={<ProductDescription />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/product/:id" element={<ProductDescription setLogged={setLogged} />} />
+        <Route path="/checkout" element={<CheckoutPage setLogged={setLogged} />} />
       </Routes>
     </div>
   );

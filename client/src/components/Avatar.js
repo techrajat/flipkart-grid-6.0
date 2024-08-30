@@ -1,8 +1,7 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { useFrame, useGraph, useLoader } from '@react-three/fiber';
+import React, { useEffect, useRef, useState } from 'react';
+import { useFrame, useGraph } from '@react-three/fiber';
 import { useAnimations, useFBX, useGLTF } from '@react-three/drei';
 import { SkeletonUtils } from 'three-stdlib';
-import * as THREE from 'three';
 
 const corresponding = {
   A: "viseme_PP",

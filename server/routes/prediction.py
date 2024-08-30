@@ -3,6 +3,7 @@ prediction_bp = Blueprint("prediction_bp", __name__)
 
 import intent_response
 
+# Endpoint to predict intent
 @prediction_bp.route("/predict", methods=['POST'])
 def predict():
     try:

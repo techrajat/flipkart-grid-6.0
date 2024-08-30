@@ -1,6 +1,4 @@
-
-import { React, useEffect, useState } from 'react';
-import Spline from '@splinetool/react-spline';
+import { React } from 'react';
 import Modal from 'react-modal';
 import { useNavigate } from 'react-router-dom';
 import { useGoogleLogin } from '@react-oauth/google';
@@ -40,7 +38,7 @@ export default function Login(props) {
         localStorage.setItem('user', JSON.stringify(user));
         props.setLogged(true);
         props.setAnimation("Greeting");
-        props.setText("Hello Rajat! How are you?");
+        props.setText("Hello Rajat! How are you? Click on me to speak.");
         navigate('/recommend');
       }
       else {
@@ -58,15 +56,6 @@ export default function Login(props) {
 
   return (
     <div className="flex h-screen w-screen">
-      {/* Spline Animation (70% width) */}
-      {/* <div className="w-7/12 h-full">
-        {/* <Spline scene="https://prod.spline.design/eh3gZzwZZj9sGf9R/scene.splinecode" /> */}
-        {/* <Spline scene="https://prod.spline.design/ffrW6F75Z29jNfeP/scene.splinecode" /> */}
-        {/* <Spline scene="https://prod.spline.design/UUUtEBsOn9aEhGDb/scene.splinecode" /> */}
-
-      {/* </div> */}
-
-      {/* Login Form (30% width) */}
       <div className="w-full h-full flex items-center justify-center bg-transparent z-[300]">
         <div className="bg-transparent  p-8 rounded-lg shadow-lg w-full max-w-md">
           <h2 className="text-2xl font-bold mb-6 text-yellow-100 text-center">Login</h2>
