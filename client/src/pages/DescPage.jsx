@@ -22,7 +22,7 @@ const DescPage = (props) => {
         <div className="flex flex-col gap-5 justify-center text-center lg:text-start w-full lg:w-[70%] max-w-full p-5 shadow-lg shadow-blue-100">
           <motion.div
             variants={slideInFromTop}
-            className="Welcome-box relative left-20 py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] flex items-center justify-center lg:justify-start"
+            className="Welcome-box relative left-20 py-[8px] px-[7px] border border-[#7042f88b] opacity-[0.9] flex items-center justify-center lg:justify-start "
           >
             <SparklesIcon className="text-[#b49bff] mr-[10px] h-5 w-5" />
             <h1 className="Welcome-text text-[13px]">
