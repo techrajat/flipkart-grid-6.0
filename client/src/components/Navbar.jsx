@@ -35,11 +35,8 @@ const Navbar = (props) => {
           <Link to="/products" className="hover:text-yellow-100">
             Products
           </Link>
-          <Link to="/cart" className="hover:text-yellow-100">
+          <Link to="/cartitems" className="hover:text-yellow-100">
             Cart
-          </Link>
-          <Link to="/login" className="hover:text-yellow-100">
-            Login
           </Link>
           <Link to="/login" className="hover:text-richblack-900 px-4 py-2 rounded-full bg-yellow-50">
            Login

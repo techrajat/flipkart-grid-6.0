@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { products } from '../components/ProductsData';
 
 // Import Swiper components and modules
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -52,6 +51,20 @@ const ProductDescription = (props) => {
     navigate('/checkout');
   };
 
+  const handleAddToCart = () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    const existingProduct = cart.find(item => item.uniq_id === product.uniq_id);
+
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+    } else {
+      cart.push({ ...product, quantity: 1 });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert('Product added to cart');
+  };
   
   return (
     <div className="flex flex-col w-[70%] lg:flex-row gap-10 min-h-screen p-4 bg-gray-100 mt-20 z-[120]">
@@ -84,7 +97,7 @@ const ProductDescription = (props) => {
         <p className="text-gray-700 mb-6">
           {product.description.length > 300 ? `${product.description.substring(0, 200)}...` : product.description}
         </p>
-        <button className="bg-blue-500 hover:bg-blue-200 text-white py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
+        <button className="bg-blue-500 hover:bg-blue-200 text-white py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105" onClick={handleAddToCart}>
           Add to Cart
         </button>
         <button 
