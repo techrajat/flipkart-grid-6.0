@@ -19,6 +19,7 @@ const CheckoutPage = (props) => {
 
   const [selectedProducts, setSelectedProducts] = useState([]);
 
+  // ** Make specific to user
   useEffect(() => {
     const savedCartItems = JSON.parse(localStorage.getItem("cart")) || [];
     const fetchedProducts = savedCartItems.map((cartItem) =>
