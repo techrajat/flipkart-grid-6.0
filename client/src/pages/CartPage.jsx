@@ -1,28 +1,40 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 
-const CartPage = () => {
+const CartPage = (props) => {
   const [cartItems, setCartItems] = useState([]);
   const navigate = useNavigate();
 
+  const fetchCart = async () => {
+    let data = await fetch(`http://127.0.0.1:5000/fetchcart`, {
+      method: "GET",
+      headers: { "Authorization": localStorage.getItem('token') }
+    });
+    if (data.status === 200) {
+      data = await data.json();
+      setCartItems(data.products);
+    }
+  };
+
   useEffect(() => {
-    const savedCartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    setCartItems(savedCartItems);
-    console.log(savedCartItems)
+    if (localStorage.getItem('token')) {
+      props.setLogged(true);
+    }
+    fetchCart();
+    //eslint-disable-next-line
   }, []);
 
-  const handleAddItem = (item) => {
-    const updatedCart = cartItems.map((cartItem) =>
-      cartItem.uniq_id === item.uniq_id
-        ? { ...cartItem, quantity: cartItem.quantity + 1 }
-        : cartItem
-    );
-    setCartItems(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  };
+  // const handleAddItem = (item) => {
+  //   const updatedCart = cartItems.map((cartItem) =>
+  //     cartItem.uniq_id === item.uniq_id
+  //       ? { ...cartItem, quantity: cartItem.quantity + 1 }
+  //       : cartItem
+  //   );
+  //   setCartItems(updatedCart);
+  //   localStorage.setItem('cart', JSON.stringify(updatedCart));
+  // };
 
   const handleRemoveItem = (id) => {
     const updatedCart = cartItems.filter((cartItem) => cartItem.uniq_id !== id);
