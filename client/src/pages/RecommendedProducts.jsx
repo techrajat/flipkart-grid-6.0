@@ -29,13 +29,18 @@ const RecommendProducts = (props) => {
 
 
   return (
-    <div className="relative h-screen w-[70%] overflow-hidden z-[100] flex flex-col  top-[150px] mt-5 left-14">
-        <div className='relative top-[50px]'>
+    <div className="min-h-screen p-6 flex justify-start items-center bg-transparent z-[200] text-caribbeangreen-25 ">
+      <div className=' border-t border-gray-300 pt-4 space-y-4 overflow-y-auto max-h-[80vh] '>
+
+      <div className='relative top-[50px]'>
           <h1 className="text-richblack-50 text-3xl font-bold fixed top-20 z-[50] pt-10">Top picks just for you</h1>
        </div>
-       <div className='overflow-y-scroll no-scrollbar'>
+       <div>
         <ProductList products={products} />
        </div>
+
+      </div>
+        
       
     </div>
   );

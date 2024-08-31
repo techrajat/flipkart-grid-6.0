@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-
 const CartPage = (props) => {
   const [cartItems, setCartItems] = useState([]);
   const navigate = useNavigate();
@@ -18,12 +17,17 @@ const CartPage = (props) => {
     }
   };
 
+  // Set initial quantities to 1 when loading products into the cart
   useEffect(() => {
-    if (localStorage.getItem('token')) {
+    if(localStorage.getItem('token')) {
       props.setLogged(true);
     }
     fetchCart();
-    //eslint-disable-next-line
+    const initialCartItems = cartItems.map((product) => ({
+      ...product,
+      quantity: 1,
+    }));
+    setCartItems(initialCartItems);
   }, []);
 
   // const handleAddItem = (item) => {
@@ -33,23 +37,24 @@ const CartPage = (props) => {
   //       : cartItem
   //   );
   //   setCartItems(updatedCart);
-  //   localStorage.setItem('cart', JSON.stringify(updatedCart));
+  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
   // };
 
   const handleRemoveItem = (id) => {
     const updatedCart = cartItems.filter((cartItem) => cartItem.uniq_id !== id);
     setCartItems(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    toast.success('Item removed');
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    toast.success("Item removed");
   };
 
   const handleUpdateQuantity = (id, quantity) => {
+    if (quantity < 1) return; // Prevent quantity from going below 1
     const updatedCart = cartItems.map((cartItem) =>
       cartItem.uniq_id === id ? { ...cartItem, quantity } : cartItem
     );
     setCartItems(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    toast.success('Item updated')
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    toast.success("Item updated");
   };
 
   const calculateTotal = () => {
@@ -60,20 +65,20 @@ const CartPage = (props) => {
   };
 
   const handleProceedToCheckout = () => {
-    const productIds = cartItems.map(item => item.uniq_id);
-    localStorage.setItem('selectedProductIds', JSON.stringify(productIds));
-    navigate('/checkout');
+    const productIds = cartItems.map((item) => item.uniq_id);
+    localStorage.setItem("selectedProductIds", JSON.stringify(productIds));
+    navigate("/checkout");
   };
 
   return (
-    <div className="relative min-h-screen p-6 flex justify-start items-center bg-transparent z-[100] left-20">
-      <div className="w-full max-w-[60%]  bg-transparent p-6 rounded-lg shadow-lg shadow-caribbeangreen-100 text-caribbeangreen-25">
-        <h1 className="text-5xl font-bold mb-6 text-center">Your Cart</h1>
+    <div className=" min-h-screen p-6 flex justify-start items-center bg-transparent z-[200] text-caribbeangreen-25 ">
+      <div className=" w-full max-w-3xl bg-transparent p-6 rounded-lg shadow-lg shadow-caribbeangreen-100 relative left-32  ">
+        <h1 className="text-3xl font-bold mb-6 text-center">Your Cart</h1>
         {cartItems.length === 0 ? (
           <p className="text-center text-lg">Your cart is empty.</p>
         ) : (
           <>
-            <div className="border-t border-gray-300 pt-4 space-y-4">
+            <div className="border-t border-gray-300 pt-4 space-y-4 overflow-y-auto max-h-[60vh] pb-[80px]">
               {cartItems.map((item) => (
                 <div
                   key={item.uniq_id}
@@ -81,7 +86,7 @@ const CartPage = (props) => {
                 >
                   <div className="flex items-center gap-4">
                     <img
-                      src={item.image[0]} // Assuming the image URL is stored in 'image_url'
+                      src={item.image[0]}
                       alt={item.product_name}
                       className="w-24 h-24 object-cover"
                     />
@@ -123,13 +128,15 @@ const CartPage = (props) => {
                 </div>
               ))}
             </div>
-            <div className="mt-6">
-              <p className="text-gray-700 font-semibold">
+
+            {/* Fixed footer for total and checkout button */}
+            <div className="  bg-richblack-900 text-caribbeangreen-100 p-4 shadow-md shadow-caribbeangreen-100 border-t flex justify-between items-center max-w-3xl mx-auto z-50">
+              <p className="text-lg font-semibold text-gray-700">
                 Total: ₹{calculateTotal()}
               </p>
               <button
                 onClick={handleProceedToCheckout}
-                className="bg-blue-500 text-white py-3 px-6 mt-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors"
+                className="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors"
               >
                 Proceed to Checkout
               </button>
@@ -142,6 +149,3 @@ const CartPage = (props) => {
 };
 
 export default CartPage;
-
-
-

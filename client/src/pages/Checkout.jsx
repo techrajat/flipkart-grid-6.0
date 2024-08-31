@@ -64,8 +64,8 @@ const CheckoutPage = (props) => {
   };
 
   return (
-    <div className="relative min-h-screen p-6 flex justify-start items-center bg-transparent z-[100]">
-      <div className="w-full max-w-[70%] bg-transparent p-6 rounded-lg shadow-lg text-caribbeangreen-25">
+    <div className="min-h-screen p-6 flex justify-start items-center bg-transparent z-[200] text-richblack-100 ">
+      <div className=" w-full max-w-5xl bg-transparent p-6 rounded-lg shadow-lg shadow-richblack-100 relative ">
         <h1 className="text-5xl font-bold mb-6 text-center">Checkout</h1>
         <form
           onSubmit={handleSubmit}
@@ -165,7 +165,7 @@ const CheckoutPage = (props) => {
 
           <div className="flex items-center justify-between w-[40%] h-full">
             {/* Review Your Order */}
-            <div className="flex-1 flex flex-col justify-between bg-transparent p-6 rounded-lg shadow-lg shadow-caribbeangreen-200">
+            <div className="border-t border-gray-300 pt-4 space-y-4 overflow-y-auto max-h-[60vh]">
               <h2 className="text-2xl font-semibold mb-4">Review Your Order</h2>
               <div className="border-t border-gray-300 pt-4">
                 <p className="text-lg font-semibold">Item Summary:</p>
@@ -186,7 +186,11 @@ const CheckoutPage = (props) => {
                   </div>
                 ))}
               </div>
-              <div className="border-t border-gray-300 pt-4">
+            <div/>
+
+
+
+              {/* <div className="border-t border-gray-300 pt-4">
                 <p className="text-lg font-semibold">Total: ₹{calculateTotal()}</p>
               </div>
               <button
@@ -194,7 +198,20 @@ const CheckoutPage = (props) => {
                 className="bg-blue-500 text-white py-3 px-6 mt-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors"
               >
                 Complete Purchase
-              </button>
+              </button> */}
+
+            <div className=" bg-richblack-900 text-caribbeangreen-100 p-4 shadow-md shadow-caribbeangreen-100 border-t flex justify-between items-center max-w-3xl mx-auto z-50">
+              <p className="text-lg font-semibold text-gray-700"> Total: ₹{calculateTotal()}</p>
+              <button
+                type="submit"
+                className="bg-blue-500 text-white py-3 px-6 mt-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors"
+              >
+                Complete Purchase
+              </button> 
+              
+            </div>
+
+
             </div>
           </div>
         </form>
