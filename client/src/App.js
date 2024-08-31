@@ -24,6 +24,7 @@ export default function App() {
   const [intent, setIntent] = useState("");
   const [negotiatedPrice, setNegotiatedPrice] = useState(0);
   const [currProduct, setCurrProduct] = useState(null);
+  const [cart, setCart] = useState([]);
 
   const logout = () => {
     setLogged(false);
@@ -51,9 +52,9 @@ export default function App() {
         <Route path="/recommend" element={<RecommendedProducts setLogged={setLogged} />} />
         <Route path="/products" element={<ProductsPage setLogged={setLogged} audioTranscript={audioTranscript} setText={setText} />} />
         <Route path="/login" element={<Login setText={setText} setLogged={setLogged} logoutModal={logoutModal} setLogoutModal={setLogoutModal} setAnimation={setAnimation} />} />
-        <Route path="/product/:id" element={<ProductDescription setLogged={setLogged} setCurrProduct={setCurrProduct} negotiatedPrice={negotiatedPrice} setNegotiatedPrice={setNegotiatedPrice} intent={intent} setIntent={setIntent} />} />
-        <Route path="/checkout" element={<CheckoutPage setLogged={setLogged} />} />
-        <Route path="/cartitems" element={<CartPage setLogged={setLogged} />} />
+        <Route path="/product/:id" element={<ProductDescription setLogged={setLogged} setCurrProduct={setCurrProduct} negotiatedPrice={negotiatedPrice} setNegotiatedPrice={setNegotiatedPrice} intent={intent} setIntent={setIntent} setCart={setCart} />} />
+        <Route path="/checkout" element={<CheckoutPage setLogged={setLogged} cart={cart} />} />
+        <Route path="/cartitems" element={<CartPage setLogged={setLogged} setCart={setCart} />} />
       </Routes>
     </div>
   );

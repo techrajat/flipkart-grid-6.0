@@ -52,7 +52,12 @@ const ProductDescription = (props) => {
 
   // Handler for Buy Now button click
   const handleBuyNow = () => {
-    // Navigate to the checkout page
+    const buyProduct = product;
+    buyProduct.quantity = 1;
+    if (props.negotiatedPrice !== 0 && props.negotiatedPrice !== buyProduct.retail_price) {
+      buyProduct.retail_price = props.negotiatedPrice;
+    }
+    props.setCart([buyProduct]);
     navigate('/checkout');
   };
 

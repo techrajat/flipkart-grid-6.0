@@ -31,10 +31,6 @@ def fetchcart():
             return {"error": "User not found"}, 400
         cart = users.find_one({'email': user['email']}, {'_id': 0})
         cart = cart['cart']
-        products = []
-        for uniq_id in cart:
-            product = collection.find_one({'uniq_id': uniq_id}, {'_id': 0})
-            products.append(product)
-        return {"products": products}, 200
+        return {"products": cart}, 200
     except:
         return {"error": "Access Denied"}, 500
