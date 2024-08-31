@@ -1,6 +1,12 @@
 import { React, useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { googleLogout } from '@react-oauth/google';
+import { FaShoppingCart } from "react-icons/fa";
+import { FaHome } from "react-icons/fa";
+import { FaRegUser } from "react-icons/fa";
+import { FaProductHunt } from "react-icons/fa6";
+
+
 
 const Navbar = (props) => {
   const navigate = useNavigate();
@@ -36,22 +42,52 @@ const Navbar = (props) => {
           <Link to="/">FlipBuddy Shopping App</Link>
         </div>
         <div className=" flex gap-4 space-x-6 ">
-          <Link to="/" className="hover:text-yellow-100 px-4 py-2 shadow-md shadow-caribbeangreen-100 font-bold">
+        <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `hover:text-yellow-100 flex gap-3 px-4 py-2 shadow-md shadow-caribbeangreen-100 font-bold ${
+                isActive ? 'text-yellow-200' : ''
+              }`
+            }
+          >
+            <FaHome size={24} />
             Home
-          </Link>
-          <Link to="/products" className="hover:text-yellow-100 px-4 py-2 shadow-md shadow-caribbeangreen-100 font-bold">
-            Products
-          </Link>
-          <Link to="/cartitems" className="hover:text-yellow-100 px-4 py-2 shadow-md shadow-caribbeangreen-100 font-bold">
+          </NavLink>
+          <NavLink
+            to="/recommend"
+            className={({ isActive }) =>
+              `hover:text-yellow-100 px-4 py-2 flex gap-3 shadow-md shadow-caribbeangreen-100 font-bold ${
+                isActive ? 'text-yellow-200' : ''
+              }`
+            }
+          >
+            <FaProductHunt size={24}/>
+            Personalised Products
+          </NavLink>
+          <NavLink
+            to="/cartitems"
+            className={({ isActive }) =>
+              `hover:text-yellow-100 flex gap-3 px-4 py-2 shadow-md shadow-caribbeangreen-100 font-bold ${
+                isActive ? 'text-yellow-200' : ''
+              }`
+            }
+          >
+            <FaShoppingCart size={24} />
             Cart
-          </Link>
-          {
-            props.logged ? <div></div> : 
-            <Link to="/login" className="hover:text-yellow-100 px-4 py-2 shadow-md shadow-caribbeangreen-100 font-bold">
-             Login
-          </Link>
-          }
-
+          </NavLink>
+          {!props.logged ? (
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                `hover:text-yellow-100 flex gap-3 px-4 py-2 shadow-md shadow-caribbeangreen-100 font-bold ${
+                  isActive ? 'text-yellow-200' : ''
+                }`
+              }
+            >
+              <FaRegUser size={24} />
+              Login
+            </NavLink>
+          ) : null}
           {
             props.logged ? 
             <div>

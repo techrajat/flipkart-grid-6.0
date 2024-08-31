@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { RiDeleteBinLine } from "react-icons/ri";
+
 
 const CartPage = (props) => {
   const [cartItems, setCartItems] = useState([]);
@@ -24,7 +26,7 @@ const CartPage = (props) => {
   };
 
   useEffect(() => {
-    if(localStorage.getItem('token')) {
+    if (localStorage.getItem("token")) {
       props.setLogged(true);
     }
     fetchCart();
@@ -61,8 +63,8 @@ const CartPage = (props) => {
     navigate("/checkout");
   };
 
-  useEffect(()=>{
-    if(props.intent === "checkout") {
+  useEffect(() => {
+    if (props.intent === "checkout") {
       handleProceedToCheckout();
       props.setIntent("");
     }
@@ -97,7 +99,10 @@ const CartPage = (props) => {
                         <button
                           type="button"
                           onClick={() =>
-                            handleUpdateQuantity(item.uniq_id, item.quantity - 1)
+                            handleUpdateQuantity(
+                              item.uniq_id,
+                              item.quantity - 1
+                            )
                           }
                           disabled={item.quantity <= 1}
                           className="bg-gray-200 px-2 rounded"
@@ -108,7 +113,10 @@ const CartPage = (props) => {
                         <button
                           type="button"
                           onClick={() =>
-                            handleUpdateQuantity(item.uniq_id, item.quantity + 1)
+                            handleUpdateQuantity(
+                              item.uniq_id,
+                              item.quantity + 1
+                            )
                           }
                           className="bg-gray-200 px-2 rounded"
                         >
@@ -117,13 +125,13 @@ const CartPage = (props) => {
                       </div>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveItem(item.uniq_id)}
-                    className="text-red-500 mt-2"
-                  >
-                    Remove
-                  </button>
+                  <div className="flex items-center">
+                    <RiDeleteBinLine
+                      size={36}
+                      style={{ cursor: "pointer" }} // Set cursor to pointer to indicate it's clickable
+                      onClick={() => handleRemoveItem(item.uniq_id)} // Attach click event handler
+                    />
+                  </div>
                 </div>
               ))}
             </div>
