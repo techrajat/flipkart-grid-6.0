@@ -54,7 +54,7 @@ const CheckoutPage = (props) => {
   };
 
   return (
-    <div className="min-h-screen p-6 flex justify-start items-center bg-transparent z-[200] text-richblack-100 ">
+    <div className="min-h-screen p-6 flex justify-start items-center bg-transparent z-[120] text-richblack-100 ">
       <div className=" w-full max-w-5xl bg-transparent p-6 rounded-lg shadow-lg shadow-richblack-100 relative ">
         <h1 className="text-5xl font-bold mb-6 text-center">Checkout</h1>
         <form

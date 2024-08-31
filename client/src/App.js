@@ -41,7 +41,7 @@ export default function App() {
         <Route path="/recommend" element={<RecommendedProducts setLogged={setLogged} />} />
         <Route path="/products" element={<ProductsPage setLogged={setLogged} audioTranscript={audioTranscript} setText={setText} />} />
         <Route path="/login" element={<Login setText={setText} setLogged={setLogged} logoutModal={logoutModal} setLogoutModal={setLogoutModal} setAnimation={setAnimation} />} />
-        <Route path="/product/:id" element={<ProductDescription setLogged={setLogged} setCurrProduct={setCurrProduct} negotiatedPrice={negotiatedPrice} setNegotiatedPrice={setNegotiatedPrice} intent={intent} setIntent={setIntent} setCart={setCart} />} />
+        <Route path="/product/:id" element={<ProductDescription setLogged={setLogged} setCurrProduct={setCurrProduct} negotiatedPrice={negotiatedPrice} setNegotiatedPrice={setNegotiatedPrice} intent={intent} setIntent={setIntent} setCart={setCart} setText={setText} />} />
         <Route path="/checkout" element={<CheckoutPage setLogged={setLogged} cart={cart} />} />
         <Route path="/cartitems" element={<CartPage setLogged={setLogged} setCart={setCart} intent={intent} setIntent={setIntent} />} />
       </Routes>
