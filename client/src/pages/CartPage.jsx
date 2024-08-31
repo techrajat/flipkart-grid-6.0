@@ -61,8 +61,16 @@ const CartPage = (props) => {
     navigate("/checkout");
   };
 
+  useEffect(()=>{
+    if(props.intent === "checkout") {
+      handleProceedToCheckout();
+      props.setIntent("");
+    }
+    //eslint-disable-next-line
+  }, [props.intent]);
+
   return (
-    <div className=" min-h-screen p-6 flex justify-start items-center bg-transparent z-[200] text-caribbeangreen-25 ">
+    <div className=" min-h-screen p-6 flex justify-start items-center bg-transparent z-[120] text-caribbeangreen-25 ">
       <div className=" w-full max-w-3xl bg-transparent p-6 rounded-lg shadow-lg shadow-caribbeangreen-100 relative left-32  ">
         <h1 className="text-3xl font-bold mb-6 text-center">Your Cart</h1>
         {cartItems.length === 0 ? (

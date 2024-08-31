@@ -1,6 +1,5 @@
-import { React, useEffect, useState } from 'react';
+import { React, useState } from 'react';
 import "./App.css";
-import { useNavigate } from 'react-router-dom';
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import StarsCanvas from "./components/StarBackground";
@@ -13,9 +12,7 @@ import DescPage from './pages/DescPage';
 import CheckoutPage from './pages/Checkout';
 import CartPage from './pages/CartPage';
 
-
 export default function App() {
-  const navigate = useNavigate();
   const [logged, setLogged] = useState(false);
   const [logoutModal, setLogoutModal] = useState(false);
   const [animation, setAnimation] = useState("Idle");
@@ -32,14 +29,6 @@ export default function App() {
     localStorage.removeItem('user');
   }
 
-  useEffect(() => {
-    if (intent === "show_products") {
-      navigate('/products');
-      setIntent("");
-    }
-    //eslint-disable-next-line
-  }, [intent]);
-
   return (
     <div className="max-h-screen min-w-screen flex flex-col font-inter bg-[#030014] overflow-y-hidden overflow-x-hidden">
       <Navbar logged={logged} setLogged={setLogged} logout={logout} setLogoutModal={setLogoutModal} />
@@ -54,7 +43,7 @@ export default function App() {
         <Route path="/login" element={<Login setText={setText} setLogged={setLogged} logoutModal={logoutModal} setLogoutModal={setLogoutModal} setAnimation={setAnimation} />} />
         <Route path="/product/:id" element={<ProductDescription setLogged={setLogged} setCurrProduct={setCurrProduct} negotiatedPrice={negotiatedPrice} setNegotiatedPrice={setNegotiatedPrice} intent={intent} setIntent={setIntent} setCart={setCart} />} />
         <Route path="/checkout" element={<CheckoutPage setLogged={setLogged} cart={cart} />} />
-        <Route path="/cartitems" element={<CartPage setLogged={setLogged} setCart={setCart} />} />
+        <Route path="/cartitems" element={<CartPage setLogged={setLogged} setCart={setCart} intent={intent} setIntent={setIntent} />} />
       </Routes>
     </div>
   );
