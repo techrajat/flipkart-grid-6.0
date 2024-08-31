@@ -7,7 +7,7 @@ const ProductList = ({ products }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {products.map((product, index) => {
           if (product !== null)
-            return <div key={index} className="shadow-md shadow-white w-full h-[400px]">
+            return <div key={index} className="shadow-md shadow-richblack-200 w-full h-[400px]">
               <ProductCard product={product} />
             </div>
           return <></>

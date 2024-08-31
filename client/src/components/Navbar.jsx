@@ -25,6 +25,7 @@ const Navbar = (props) => {
     googleLogout();
     props.logout();
     props.setLogoutModal(true);
+    setIsDropdownOpen(false);
     navigate("/");
   }
 
@@ -35,18 +36,18 @@ const Navbar = (props) => {
           <Link to="/">FlipBuddy Shopping App</Link>
         </div>
         <div className=" flex gap-4 space-x-6 ">
-          <Link to="/" className="hover:text-yellow-100 px-4 py-2 shadow-md shadow-caribbeangreen-100">
+          <Link to="/" className="hover:text-yellow-100 px-4 py-2 shadow-md shadow-caribbeangreen-100 font-bold">
             Home
           </Link>
-          <Link to="/products" className="hover:text-yellow-100 px-4 py-2 shadow-md shadow-caribbeangreen-100">
+          <Link to="/products" className="hover:text-yellow-100 px-4 py-2 shadow-md shadow-caribbeangreen-100 font-bold">
             Products
           </Link>
-          <Link to="/cartitems" className="hover:text-yellow-100 px-4 py-2 shadow-md shadow-caribbeangreen-100">
+          <Link to="/cartitems" className="hover:text-yellow-100 px-4 py-2 shadow-md shadow-caribbeangreen-100 font-bold">
             Cart
           </Link>
           {
             props.logged ? <div></div> : 
-            <Link to="/login" className="hover:text-yellow-100 px-4 py-2 shadow-md shadow-caribbeangreen-100">
+            <Link to="/login" className="hover:text-yellow-100 px-4 py-2 shadow-md shadow-caribbeangreen-100 font-bold">
              Login
           </Link>
           }
@@ -56,7 +57,7 @@ const Navbar = (props) => {
             <div>
 
             <button
-            className="relative  right-10  text-white  focus:outline-none px-4 py-2 shadow-md shadow-caribbeangreen-100 "
+            className="relative  right-10  text-white font-bold focus:outline-none px-4 py-2 shadow-md shadow-caribbeangreen-100  hover:text-yellow-100"
             onClick={toggleDropdown}
           >
             {name}
@@ -78,12 +79,12 @@ const Navbar = (props) => {
 
           {/* Dropdown Menu */}
           {isDropdownOpen && (
-            <div className="absolute right-0.5 mt-4 w-36 bg-transparent rounded-md  z-250 text-white font-bold shadow-md shadow-white">
+            <div className="absolute right-5 mt-4 w-28 bg-transparent rounded-md  z-250 text-white font-bold shadow-md shadow-white">
               <ul className="py-1 text-gray-yellow ">
                 <li>
                   <a
                     href="/profile"
-                    className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md shadow-caribbeangreen-200"
+                    className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md shadow-caribbeangreen-200 hover:text-yellow-200"
                   >
                     Profile
                   </a>
@@ -91,7 +92,7 @@ const Navbar = (props) => {
                 
                 <li>
                   <button
-                    className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                    className="block w-full text-left px-4 py-2 text-sm hover:text-yellow-200"
                     onClick={log_out}
                   >
                     Logout
