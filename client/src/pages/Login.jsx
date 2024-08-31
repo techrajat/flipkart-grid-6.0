@@ -103,20 +103,7 @@ export default function Login(props) {
                 Sign In
               </button>
               <div>
-                <Modal
-                  isOpen={props.logoutModal}
-                  onAfterOpen={afterOpenModal}
-                  style={customStyles}
-                  ariaHideApp={false}
-                  contentLabel="Attention"
-                  id={'custom-modal'}
-                >
-                  <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Attention</h2>
-                  <button onClick={() => { props.setLogoutModal(false) }} id="logoutModalClose"><i className="fa-solid fa-xmark"></i></button>
-                  <p className="modalMessage">You have been logged out. Please login again.</p>
-                </Modal>
                 <div className="container relative ">
-                  
                   <button type="button" className="login-with-google-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => googleSignIn()}>
                     Sign in with Google
                   </button>
