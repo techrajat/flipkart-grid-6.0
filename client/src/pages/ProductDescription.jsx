@@ -57,9 +57,17 @@ const ProductDescription = (props) => {
   };
 
   const handleAddToCart = async () => {
+    let price = product.retail_price;
+    if (props.negotiatedPrice !== 0 && props.negotiatedPrice !== product.retail_price) {
+      price = props.negotiatedPrice;
+    }
     let data = await fetch(`http://127.0.0.1:5000/addtocart/${id}`, {
-      method: "GET",
-      headers: { "Authorization": localStorage.getItem('token') }
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": localStorage.getItem('token')
+      },
+      body: `price=${encodeURIComponent(price)}`
     });
     if (data.status === 200) {
       toast.success('Item added to cart');
