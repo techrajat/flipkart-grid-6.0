@@ -28,7 +28,7 @@ const mouthCues = ["X", "B", "A", "C", "E", "F", "D", "H", "G"];
 export function Avatar(props) {
   const [utterance, setUtterance] = useState(null);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const [animation, setAnimation] = useState("Idle");
+  // const [props.animation, props.setAnimation] = useState("Idle");
 
   const { scene } = useGLTF('/models/66c388c9119519ed2a436546.glb');
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
@@ -37,16 +37,20 @@ export function Avatar(props) {
   const { animations: greetingAnimation } = useFBX("/animations/Greeting.fbx");
   const { animations: talkingAnimation } = useFBX("/animations/Talking.fbx");
   const { animations: listeningAnimation } = useFBX("/animations/Listening.fbx");
-  const { animations: rightTurnAnimation } = useFBX("/animations/RightTurn.fbx");
+  const { animations: pointingAnimation } = useFBX("/animations/Pointing.fbx");
+  const { animations: saluteAnimation } = useFBX("/animations/Salute.fbx");
+  const { animations: thankfulAnimation } = useFBX("/animations/Thankful.fbx");
 
   idleAnimation[0].name = "Idle";
   greetingAnimation[0].name = "Greeting";
   talkingAnimation[0].name = "Talking";
   listeningAnimation[0].name = "Listening";
-  rightTurnAnimation[0].name = "RightTurn";
+  pointingAnimation[0].name = "Pointing";
+  saluteAnimation[0].name = "Salute";
+  thankfulAnimation[0].name = "Thankful";
 
   const group = useRef();
-  const { actions } = useAnimations([idleAnimation[0], greetingAnimation[0], talkingAnimation[0], listeningAnimation[0], rightTurnAnimation[0]], group);
+  const { actions } = useAnimations([idleAnimation[0], greetingAnimation[0], talkingAnimation[0], listeningAnimation[0], pointingAnimation[0], saluteAnimation[0], thankfulAnimation[0]], group);
 
   useEffect(() => {
     const synth = window.speechSynthesis;
@@ -94,26 +98,27 @@ export function Avatar(props) {
   useEffect(() => {
     if (utterance) {
       handlePlay();
-      setAnimation(props.animation);
+      props.setAnimation(props.animation);
     } 
     else {
-      setAnimation("Idle");
+      props.setAnimation("Idle");
     }
     //eslint-disable-next-line
   }, [utterance]);
 
   useEffect(()=>{
     if(!isSpeaking) {
-      setAnimation("Idle");
+      props.setAnimation("Idle");
     }
+    //eslint-disable-next-line
   }, [isSpeaking]);
 
   useEffect(() => {
-    actions[animation]?.reset().fadeIn(0.5).play();
+    actions[props.animation]?.reset().fadeIn(0.5).play();
     return () => {
-      actions[animation]?.fadeOut(0.5);
+      actions[props.animation]?.fadeOut(0.5);
     };
-  }, [animation, actions]);
+  }, [props.animation, actions]);
 
   useFrame(({ clock }) => {
     if (isSpeaking) {

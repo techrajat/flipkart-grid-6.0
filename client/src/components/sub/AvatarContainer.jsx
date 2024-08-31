@@ -55,12 +55,15 @@ const AvatarContainer = (props) => {
       props.setIntent(res.intent);
       if (res.intent === "show_products") {
         navigate('/products');
+        props.setAnimation("Pointing");
         props.setIntent("");
       }
       else if (res.intent === "negotiation") {
+        props.setAnimation("Talking");
         getNegotiatedResponse();
       }
       else if (res.intent === "checkout") {
+        props.setAnimation("Thankful");
         getCheckoutResponse();
       }
     }
@@ -93,7 +96,7 @@ const AvatarContainer = (props) => {
         shadows 
         camera={{ position: [0, -2, 18], fov: 18 }}
       >
-        <Experience text={props.text} animation={props.animation} listen={listen} />
+        <Experience text={props.text} animation={props.animation} setAnimation={props.setAnimation} listen={listen} />
       </Canvas>
     </div>
   );

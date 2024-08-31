@@ -50,7 +50,7 @@ const CartPage = (props) => {
 
   const calculateTotal = () => {
     return cartItems.reduce(
-      (total, item) => total + item.discounted_price * item.quantity,
+      (total, item) => total + item.retail_price * item.quantity,
       0
     );
   };
@@ -91,7 +91,7 @@ const CartPage = (props) => {
                     />
                     <div>
                       <p className="text-lg font-semibold">
-                        {item.product_name} - ₹{item.discounted_price}
+                        {item.product_name} - ₹{item.retail_price}
                       </p>
                       <div className="flex items-center gap-2 mt-2">
                         <button

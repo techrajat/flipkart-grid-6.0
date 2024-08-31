@@ -90,6 +90,7 @@ const ProductDescription = (props) => {
                                  "Your item is now in the cart!"]
       const response = addToCartResonses[Math.floor(Math.random() * addToCartResonses.length)];
       props.setText(response);
+      props.setAnimation("Salute");
       props.setIntent("");
     }
     //eslint-disable-next-line
