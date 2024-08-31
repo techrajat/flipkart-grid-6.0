@@ -40,7 +40,7 @@ const ProductSlider = ({ products }) => {
       >
         {products.map((product, index) => {
           if (product !== null)
-            return <SwiperSlide key={index} className="shadow-md shadow-yellow-200">
+            return <SwiperSlide key={index} className="shadow-lg shadow-yellow-200">
               <ProductCard product={product} />
             </SwiperSlide>
           return <></>

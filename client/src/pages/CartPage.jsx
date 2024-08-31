@@ -77,7 +77,7 @@ const CartPage = (props) => {
           <p className="text-center text-lg">Your cart is empty.</p>
         ) : (
           <>
-            <div className="border-t border-gray-300 pt-4 space-y-4 overflow-y-auto max-h-[60vh] pb-[80px]">
+            <div className="border-t border-gray-300 pt-4 space-y-4 overflow-y-auto max-h-[60vh] pb-[80px] no-scrollbar">
               {cartItems.map((item) => (
                 <div
                   key={item.uniq_id}

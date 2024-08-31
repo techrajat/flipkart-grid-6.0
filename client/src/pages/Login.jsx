@@ -1,67 +1,60 @@
-import { React } from 'react';
-import Modal from 'react-modal';
-import { useNavigate } from 'react-router-dom';
-import { useGoogleLogin } from '@react-oauth/google';
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
-  }
-};
+import { React } from "react";
+import Modal from "react-modal";
+import { useNavigate } from "react-router-dom";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function Login(props) {
   const navigate = useNavigate();
 
   const googleSignIn = useGoogleLogin({
     onSuccess: (codeResponse) => getUser(codeResponse),
-    onError: (error) => console.log('Login Failed:', error)
+    onError: (error) => console.log("Login Failed:", error),
   });
 
   const getUser = async (codeResponse) => {
     const token = codeResponse.access_token;
     if (token) {
-      localStorage.setItem('token', token);
+      localStorage.setItem("token", token);
       let data = await fetch(`http://127.0.0.1:5000/getuser`, {
         method: "GET",
         headers: {
-          "Authorization": token
-        }
+          Authorization: token,
+        },
       });
       if (data.status === 200) {
         data = await data.json();
         const user = data.user;
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(user));
         props.setLogged(true);
         props.setAnimation("Greeting");
         props.setText("Hello Rajat! How are you? Click on me to speak.");
-        navigate('/recommend');
-      }
-      else {
+        navigate("/recommend");
+      } else {
         data = await data.json();
-        document.getElementById('warn').innerHTML = data.error;
+        document.getElementById("warn").innerHTML = data.error;
       }
     }
   };
 
   let subtitle;
   function afterOpenModal() {
-    subtitle.style.color = 'rgb(78, 65, 65)';
-    subtitle.style.textDecorationLine = 'underline';
+    subtitle.style.color = "rgb(78, 65, 65)";
+    subtitle.style.textDecorationLine = "underline";
   }
 
   return (
-    <div className="flex h-screen w-screen">
-      <div className="w-full h-full flex items-center justify-center bg-transparent z-[300]">
-        <div className="bg-transparent  p-8 rounded-lg shadow-lg w-full max-w-md">
-          <h2 className="text-2xl font-bold mb-6 text-yellow-100 text-center">Login</h2>
+    <div className="flex h-screen w-screen  items-center justify-center z-[100] bg-transparent">
+      <div className=" flex items-center  justify-center bg-transparent z-[200]">
+        <div className="bg-transparent px-6 rounded-lg shadow-lg shadow-pink-200 w-full max-w-md">
+          <h2 className="text-2xl font-bold mb-6 text-yellow-100 text-center">
+            Login
+          </h2>
           <form>
             <div className="mb-4">
-              <label className="block text-yellow-100 text-sm font-bold mb-2" htmlFor="username">
+              <label
+                className="block text-yellow-100 text-sm font-bold mb-2"
+                htmlFor="username"
+              >
                 Username
               </label>
               <input
@@ -73,7 +66,10 @@ export default function Login(props) {
             </div>
 
             <div className="mb-4">
-              <label className="block text-yellow-100 text-sm font-bold mb-2" htmlFor="password">
+              <label
+                className="block text-yellow-100 text-sm font-bold mb-2"
+                htmlFor="password"
+              >
                 Password
               </label>
               <input
@@ -82,17 +78,6 @@ export default function Login(props) {
                 type="password"
                 placeholder="Enter your password"
               />
-            </div>
-
-            <div className="mb-6">
-              <input
-                className="mr-2 leading-tight"
-                type="checkbox"
-                id="rememberMe"
-              />
-              <label className="text-sm text-white" htmlFor="rememberMe">
-                Remember Me
-              </label>
             </div>
 
             <div className="flex items-center justify-between relative bottom-10">
@@ -110,8 +95,12 @@ export default function Login(props) {
                   <p id="warn"></p>
                 </div>
               </div>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="button">Signup</button>
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="button"
+              >
+                Signup
+              </button>
             </div>
           </form>
         </div>
