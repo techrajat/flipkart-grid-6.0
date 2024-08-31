@@ -52,14 +52,6 @@ const ProductDescription = (props) => {
     navigate('/checkout');
   };
 
-  useEffect(()=>{
-    if(props.intent === "checkout") {
-      handleBuyNow();
-      props.setIntent("");
-    }
-    //eslint-disable-next-line
-  }, [props.intent]);
-
   const handleAddToCart = async () => {
     let price = product.retail_price;
     if (props.negotiatedPrice !== 0 && props.negotiatedPrice !== product.retail_price) {
@@ -77,6 +69,31 @@ const ProductDescription = (props) => {
       toast.success('Item added to cart');
     }
   };
+
+  
+  useEffect(()=>{
+    if(props.intent === "checkout") {
+      handleBuyNow();
+      props.setIntent("");
+    }
+    else if(props.intent === "add_to_cart") {
+      handleAddToCart();
+      const addToCartResonses = ["Item added to your cart!",
+                                 "Successfully added to cart!",
+                                 "Item added to cart.",
+                                 "Successfully added to your cart!",
+                                 "Your item is in the cart!",
+                                 "Item has been added to the cart.",
+                                 "Added to your cart!",
+                                 "Item successfully placed in your cart!",
+                                 "Added to cart!",
+                                 "Your item is now in the cart!"]
+      const response = addToCartResonses[Math.floor(Math.random() * addToCartResonses.length)];
+      props.setText(response);
+      props.setIntent("");
+    }
+    //eslint-disable-next-line
+  }, [props.intent]);
   
   if (!product) {
     return (

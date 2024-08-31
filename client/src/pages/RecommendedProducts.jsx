@@ -29,7 +29,7 @@ const RecommendProducts = (props) => {
 
 
   return (
-    <div className="min-h-screen p-6 flex justify-start items-center bg-transparent z-[200] text-caribbeangreen-25 ">
+    <div className="min-h-screen p-6 flex justify-start items-center bg-transparent z-[120] text-caribbeangreen-25 ">
        <h1 className="text-richblack-50 text-3xl font-bold fixed top-[120px] z-[50] border-b-2 border-caribbeangreen-25 ">Top picks just for you</h1>
       <div className='relative max-w-5xl border-gray-300 overflow-y-auto max-h-[80vh] top-16 no-scrollbar'>
         <ProductList products={products} />

@@ -34,16 +34,16 @@ client = MongoClient("mongodb://localhost:27017/")
 db = client['Flipkart-Grid']
 collection = db['Products']
 
-checkout_response = ["Fantastic choice! You're all set to checkout.",
-                     "Great pick! Let's get this to you as quickly as possible.",
-                     "You've chosen a winner! Time to finalize your purchase.",
-                     "Wonderful selection! Let's move forward with your order.",
-                     "Perfect choice! Let's wrap this up for you.",
-                     "You've got an eye for quality! Let's get this checked out.",
-                     "Brilliant selection! Let's complete your purchase.",
-                     "You're making a great decision! Let's proceed to checkout.",
-                     "Excellent choice! Let's finalize everything.",
-                     "You're about to own something amazing! Let's get it checked out."]
+checkout_response = ["You've made an excellent choice! Let's get this to you.",
+                     "Ready to complete your purchase? Let's move forward.",
+                     "You're about to get something great! Let's wrap this up.",
+                     "Your selection is top-notch! Time to finalize the details.",
+                     "You're all set! Let's proceed to complete your order.",
+                     "This is going to be fantastic! Let's finish the checkout.",
+                     "You're making a great decision! Let's get everything sorted.",
+                     "Exciting times ahead! Let's finalize your purchase.",
+                     "Let's complete this, and you'll have it in no time!",
+                     "You're about to receive something wonderful! Let's get it checked out."]
 
 def negotiation_response(user_price, discount_price):
     negotiation_agree = [f"Absolutely! I'm happy to accept your offer of {user_price} rupees. Let's finalize the deal!",

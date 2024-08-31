@@ -68,9 +68,14 @@ const AvatarContainer = (props) => {
 
   useEffect(()=>{
     if (!listening && transcript) {
-        props.setAudioTranscript(transcript);
+      props.setAudioTranscript(transcript);
+      if (transcript.includes('cart')) {
+        props.setIntent("add_to_cart");
+      }
+      else {
         getIntent(transcript);
       }
+    }
       //eslint-disable-next-line
   }, [listening, transcript]);
 
