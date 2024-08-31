@@ -13,32 +13,23 @@ const CartPage = (props) => {
     });
     if (data.status === 200) {
       data = await data.json();
-      setCartItems(data.products);
+      const productsArray = Object.values(data.products);
+      const initialCartItems = productsArray.map((product) => ({
+        ...product,
+        quantity: 1,
+      }));
+      setCartItems(initialCartItems);
+      props.setCart(initialCartItems);
     }
   };
 
-  // Set initial quantities to 1 when loading products into the cart
   useEffect(() => {
     if(localStorage.getItem('token')) {
       props.setLogged(true);
     }
     fetchCart();
-    const initialCartItems = cartItems.map((product) => ({
-      ...product,
-      quantity: 1,
-    }));
-    setCartItems(initialCartItems);
+    //eslint-disable-next-line
   }, []);
-
-  // const handleAddItem = (item) => {
-  //   const updatedCart = cartItems.map((cartItem) =>
-  //     cartItem.uniq_id === item.uniq_id
-  //       ? { ...cartItem, quantity: cartItem.quantity + 1 }
-  //       : cartItem
-  //   );
-  //   setCartItems(updatedCart);
-  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
-  // };
 
   const handleRemoveItem = (id) => {
     const updatedCart = cartItems.filter((cartItem) => cartItem.uniq_id !== id);
@@ -48,7 +39,7 @@ const CartPage = (props) => {
   };
 
   const handleUpdateQuantity = (id, quantity) => {
-    if (quantity < 1) return; // Prevent quantity from going below 1
+    if (quantity < 1) return;
     const updatedCart = cartItems.map((cartItem) =>
       cartItem.uniq_id === id ? { ...cartItem, quantity } : cartItem
     );
@@ -70,8 +61,16 @@ const CartPage = (props) => {
     navigate("/checkout");
   };
 
+  useEffect(()=>{
+    if(props.intent === "checkout") {
+      handleProceedToCheckout();
+      props.setIntent("");
+    }
+    //eslint-disable-next-line
+  }, [props.intent]);
+
   return (
-    <div className=" min-h-screen p-6 flex justify-start items-center bg-transparent z-[200] text-caribbeangreen-25 ">
+    <div className=" min-h-screen p-6 flex justify-start items-center bg-transparent z-[120] text-caribbeangreen-25 ">
       <div className=" w-full max-w-3xl bg-transparent p-6 rounded-lg shadow-lg shadow-caribbeangreen-100 relative left-32  ">
         <h1 className="text-3xl font-bold mb-6 text-center">Your Cart</h1>
         {cartItems.length === 0 ? (
@@ -128,8 +127,6 @@ const CartPage = (props) => {
                 </div>
               ))}
             </div>
-
-            {/* Fixed footer for total and checkout button */}
             <div className="  bg-richblack-900 text-caribbeangreen-100 p-4 shadow-md shadow-caribbeangreen-100 border-t flex justify-between items-center max-w-3xl mx-auto z-50">
               <p className="text-lg font-semibold text-gray-700">
                 Total: ₹{calculateTotal()}

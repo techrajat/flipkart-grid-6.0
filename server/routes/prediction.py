@@ -26,3 +26,16 @@ def negotiate():
         return {"newPrice": res[0], "response": res[1]}, 200
     except:
         return {"error": "Server error"}, 500
+
+# Endpoint to generate response for negotiation
+@prediction_bp.route("/checkout", methods=['POST'])
+def checkout():
+    try:
+        user = request.environ['user']
+        if not user:
+            return {"error": "User not found"}, 400
+        query = request.form['query']
+        res = intent_response.response(query, None)
+        return {"response": res[1]}, 200
+    except:
+        return {"error": "Server error"}, 500

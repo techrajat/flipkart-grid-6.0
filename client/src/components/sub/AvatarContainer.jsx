@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Canvas } from "@react-three/fiber";
 import { Experience } from "../Experience";
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import { useNavigate } from 'react-router-dom';
 
 const AvatarContainer = (props) => {
+  const navigate = useNavigate();
   const [listen, setListen] = useState(false);
 
   const {
@@ -27,6 +29,21 @@ const AvatarContainer = (props) => {
     }
   }
 
+  const getCheckoutResponse = async () => {
+    const response = await fetch("http://127.0.0.1:5000/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": localStorage.getItem('token')
+      },
+      body: `query=${encodeURIComponent(transcript)}`
+    });
+    if (response.status === 200) {
+      const res = await response.json();
+      props.setText(res.response);
+    }
+  }
+
   const getIntent = async (transcript) => {
     const response = await fetch("http://127.0.0.1:5000/predict", {
       method: "POST",
@@ -36,8 +53,15 @@ const AvatarContainer = (props) => {
     if (response.status === 200) {
       const res = await response.json();
       props.setIntent(res.intent);
-      if (res.intent === "negotiation") {
+      if (res.intent === "show_products") {
+        navigate('/products');
+        props.setIntent("");
+      }
+      else if (res.intent === "negotiation") {
         getNegotiatedResponse();
+      }
+      else if (res.intent === "checkout") {
+        getCheckoutResponse();
       }
     }
   };

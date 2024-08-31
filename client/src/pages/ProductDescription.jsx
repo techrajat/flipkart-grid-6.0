@@ -42,19 +42,23 @@ const ProductDescription = (props) => {
     //eslint-disable-next-line
   }, [props.negotiatedPrice]);
 
-  if (!product) {
-    return (
-      <div className="flex justify-center text-white items-center min-h-screen text-center text-3xl text-red-500">
-        Product not found.
-      </div>
-    );
-  }
-
-  // Handler for Buy Now button click
   const handleBuyNow = () => {
-    // Navigate to the checkout page
+    const buyProduct = product;
+    buyProduct.quantity = 1;
+    if (props.negotiatedPrice !== 0 && props.negotiatedPrice !== buyProduct.retail_price) {
+      buyProduct.retail_price = props.negotiatedPrice;
+    }
+    props.setCart([buyProduct]);
     navigate('/checkout');
   };
+
+  useEffect(()=>{
+    if(props.intent === "checkout") {
+      handleBuyNow();
+      props.setIntent("");
+    }
+    //eslint-disable-next-line
+  }, [props.intent]);
 
   const handleAddToCart = async () => {
     let price = product.retail_price;
@@ -73,10 +77,17 @@ const ProductDescription = (props) => {
       toast.success('Item added to cart');
     }
   };
+  
+  if (!product) {
+    return (
+      <div className="flex justify-center text-white items-center min-h-screen text-center text-3xl text-red-500">
+        Product not found.
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col w-[70%] lg:flex-row gap-10 min-h-screen p-4 bg-gray-100 mt-20 z-[120]">
-      {/* Product Image Section with Swiper Slider */}
       <div className="lg:w-[50%] w-full flex justify-center items-center bg-transparent rounded-lg shadow-lg shadow-yellow-25 border-2 z-[120]">
         <Swiper
           modules={[Navigation, Pagination]}
@@ -98,7 +109,6 @@ const ProductDescription = (props) => {
         </Swiper>
       </div>
 
-      {/* Product Details Section */}
       <div className="lg:w-[50%] w-full text-richblack-100 flex flex-col justify-center p-6 gap-4">
         <h1 className="text-4xl font-bold mb-4">{product.product_name}</h1>
         <p id="retailPrice" className="text-2xl text-green-600 mb-4">₹{product.retail_price}</p>
@@ -110,7 +120,7 @@ const ProductDescription = (props) => {
         </button>
         <button
           className="bg-yellow-500 hover:bg-yellow-200 text-white py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105"
-          onClick={handleBuyNow}  // Add onClick handler
+          onClick={handleBuyNow}
         >
           Buy Now
         </button>

@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from "react";
-import { products } from "../components/ProductsData";
+// import { products } from "../components/ProductsData";
 
 const CheckoutPage = (props) => {
   const [shippingInfo, setShippingInfo] = useState({
@@ -19,19 +18,11 @@ const CheckoutPage = (props) => {
 
   const [selectedProducts, setSelectedProducts] = useState([]);
 
-  // ** Make specific to user
   useEffect(() => {
-    const savedCartItems = JSON.parse(localStorage.getItem("cart")) || [];
-    const fetchedProducts = savedCartItems.map((cartItem) =>
-      products.find((p) => p.uniq_id === cartItem.uniq_id)
-    );
-
-    setSelectedProducts(
-      fetchedProducts.map((product, index) => ({
-        ...product,
-        quantity: savedCartItems[index].quantity,
-      })).filter(Boolean) // Filter out undefined products
-    );
+    setSelectedProducts(props.cart);
+    const user = JSON.parse(localStorage.getItem('user'));
+    setShippingInfo({name: user.name, address: user.address, city: user.city, state: user.state, zip: user.zip});
+    //eslint-disable-next-line
   }, []);
 
   const handleShippingChange = (e) => {
@@ -49,7 +40,6 @@ const CheckoutPage = (props) => {
     console.log("Shipping Info:", shippingInfo);
     console.log("Payment Info:", paymentInfo);
     console.log("Selected Products:", selectedProducts);
-    // Implement further actions like sending the data to a server or payment gateway
   };
 
   useEffect(()=>{
@@ -60,7 +50,7 @@ const CheckoutPage = (props) => {
   }, []);
 
   const calculateTotal = () => {
-    return selectedProducts.reduce((total, product) => total + product.discounted_price * product.quantity, 0);
+    return selectedProducts.reduce((total, product) => total + product.retail_price * product.quantity, 0);
   };
 
   return (
@@ -72,7 +62,6 @@ const CheckoutPage = (props) => {
           className="relative space-y-8 flex flex-row w-full gap-10"
         >
           <div className="flex lg:flex-col gap-10 w-[60%]">
-            {/* Shipping Information */}
             <div className="flex-1 bg-transparent p-6 rounded-lg shadow-lg shadow-yellow-200">
               <h2 className="text-2xl font-semibold mb-4">
                 Shipping Information
@@ -126,7 +115,6 @@ const CheckoutPage = (props) => {
               </div>
             </div>
 
-            {/* Payment Information */}
             <div className="flex-1 bg-transparent p-6 rounded-lg shadow-lg shadow-blue-200">
               <h2 className="text-2xl font-semibold mb-4">
                 Payment Information
@@ -164,8 +152,7 @@ const CheckoutPage = (props) => {
           </div>
 
           <div className="flex items-center justify-between w-[40%] h-full">
-            {/* Review Your Order */}
-            <div className="border-t border-gray-300 pt-4 space-y-4 overflow-y-auto max-h-[60vh]">
+            <div className="border-t border-gray-300 pt-4 space-y-4 overflow-y-auto max-h-[60vh] no-scrollbar">
               <h2 className="text-2xl font-semibold mb-4">Review Your Order</h2>
               <div className="border-t border-gray-300 pt-4">
                 <p className="text-lg font-semibold">Item Summary:</p>
@@ -181,25 +168,12 @@ const CheckoutPage = (props) => {
                         {product.product_name}
                       </p>
                       <p className="text-gray-500">Quantity: {product.quantity}</p>
-                      <p className="text-gray-700">₹{product.discounted_price * product.quantity}</p>
+                      <p className="text-gray-700">₹{product.retail_price * product.quantity}</p>
                     </div>
                   </div>
                 ))}
               </div>
             <div/>
-
-
-
-              {/* <div className="border-t border-gray-300 pt-4">
-                <p className="text-lg font-semibold">Total: ₹{calculateTotal()}</p>
-              </div>
-              <button
-                type="submit"
-                className="bg-blue-500 text-white py-3 px-6 mt-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors"
-              >
-                Complete Purchase
-              </button> */}
-
             <div className=" bg-richblack-900 text-caribbeangreen-100 p-4 shadow-md shadow-caribbeangreen-100 border-t flex justify-between items-center max-w-3xl mx-auto z-50">
               <p className="text-lg font-semibold text-gray-700"> Total: ₹{calculateTotal()}</p>
               <button
@@ -210,8 +184,6 @@ const CheckoutPage = (props) => {
               </button> 
               
             </div>
-
-
             </div>
           </div>
         </form>

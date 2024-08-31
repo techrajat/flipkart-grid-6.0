@@ -89,11 +89,7 @@ export default function Login(props) {
               </button>
               <div>
                 <div className="container relative ">
-                  <button
-                    type="button"
-                    className="login-with-google-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    onClick={() => googleSignIn()}
-                  >
+                  <button type="button" className="login-with-google-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => googleSignIn()}>
                     Sign in with Google
                   </button>
                   <p id="warn"></p>
