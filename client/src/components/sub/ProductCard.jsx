@@ -25,8 +25,7 @@ const ProductCard = ({ product }) => {
       }} className="h-48 object-cover transition-transform duration-300 ease-in-out hover:scale-105" />
       <h2 className="text-lg font-semibold mt-4">{product.product_name}</h2>
       <p className=" mt-2">{shortDescription}</p>
-      <p className="text-blue-100 font-bold mt-4">₹{product.discounted_price}</p>
-      <p className="text-gray-400 mt-1 line-through">₹{product.retail_price}</p>
+      <p className="text-gray-400 mt-1">₹{product.retail_price}</p>
     </motion.div>
   );
 };
