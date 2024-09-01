@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 // import { products } from "../components/ProductsData";
 
 const CheckoutPage = (props) => {
+  const navigate = useNavigate();
+
   const [shippingInfo, setShippingInfo] = useState({
     name: "",
     address: "",
@@ -53,8 +56,12 @@ const CheckoutPage = (props) => {
     return selectedProducts.reduce((total, product) => total + product.retail_price * product.quantity, 0);
   };
 
+  const handleCompletePurchase = ()=>{
+    navigate("/order");
+  }
+  
   return (
-    <div className="min-h-screen p-6 flex justify-start items-center bg-transparent z-[120] text-richblack-100 ">
+    <div className="min-h-screen p-6 flex justify-start items-center bg-transparent z-[120] text-richblack-25 ">
       <div className=" w-full max-w-5xl bg-transparent p-6 rounded-lg shadow-lg shadow-richblack-100 relative ">
         <h1 className="text-5xl font-bold mb-6 text-center">Checkout</h1>
         <form
@@ -62,7 +69,7 @@ const CheckoutPage = (props) => {
           className="relative space-y-8 flex flex-row w-full gap-10"
         >
           <div className="flex lg:flex-col gap-10 w-[60%]">
-            <div className="flex-1 bg-transparent p-6 rounded-lg shadow-lg shadow-yellow-200">
+            <div className="flex-1 bg-transparent p-6 rounded-lg shadow-lg shadow-yellow-200 text-white">
               <h2 className="text-2xl font-semibold mb-4">
                 Shipping Information
               </h2>
@@ -178,6 +185,7 @@ const CheckoutPage = (props) => {
               <p className="text-lg font-semibold text-gray-700"> Total: ₹{calculateTotal()}</p>
               <button
                 type="submit"
+                onClick={handleCompletePurchase}
                 className="bg-blue-500 text-white py-3 px-6 mt-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors"
               >
                 Complete Purchase
