@@ -1,5 +1,4 @@
 import { React } from "react";
-import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 
@@ -26,8 +25,8 @@ export default function Login(props) {
         const user = data.user;
         localStorage.setItem("user", JSON.stringify(user));
         props.setLogged(true);
+        props.setText(`Hello ${user.name.split(' ')[0]}! How are you? Click on me to speak.`);
         props.setAnimation("Greeting");
-        props.setText("Hello Rajat! How are you? Click on me to speak.");
         navigate("/recommend");
       } else {
         data = await data.json();
@@ -35,12 +34,6 @@ export default function Login(props) {
       }
     }
   };
-
-  let subtitle;
-  function afterOpenModal() {
-    subtitle.style.color = "rgb(78, 65, 65)";
-    subtitle.style.textDecorationLine = "underline";
-  }
 
   return (
     <div className="flex h-screen w-screen  items-center justify-center z-[100] bg-transparent">

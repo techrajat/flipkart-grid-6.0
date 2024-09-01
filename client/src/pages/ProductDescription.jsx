@@ -24,6 +24,7 @@ const ProductDescription = (props) => {
       setProduct(res.product);
       setImages(Array.isArray(res.product.image) ? res.product.image : [res.product.image]);
       props.setCurrProduct(id);
+      props.setCurrPrice(res.product.retail_price);
     }
   };
 
