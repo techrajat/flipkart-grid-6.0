@@ -16,6 +16,10 @@ const Navbar = (props) => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const closeDropdown = () => {
+    setIsDropdownOpen(false);
+  };
+
   useEffect(() => {
     if (props.logged) {
       let user = localStorage.getItem("user");
@@ -114,6 +118,7 @@ const Navbar = (props) => {
                       <Link
                         to="/recommend"
                         className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md shadow-caribbeangreen-200 hover:text-yellow-200"
+                        onClick={closeDropdown}
                       >
                         Top Picks
                       </Link>
@@ -123,6 +128,7 @@ const Navbar = (props) => {
                       <Link
                         to="/profile"
                         className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md shadow-caribbeangreen-200 hover:text-yellow-200"
+                        onClick={closeDropdown}
                       >
                        Profile
                       </Link>
@@ -131,6 +137,7 @@ const Navbar = (props) => {
                       <Link
                         to="/order"
                         className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md shadow-caribbeangreen-200 hover:text-yellow-200"
+                        onClick={closeDropdown}
                       >
                        My Orders
                       </Link>

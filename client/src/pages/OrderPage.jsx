@@ -52,7 +52,7 @@ const OrderPage = (props) => {
             return (
               <div
                 key={index}
-                className="flex shadow-md shadow-caribbeangreen-25 h-[200px] w-full p-4 items-center bg-white rounded-md"
+                className="flex shadow-md shadow-caribbeangreen-25 h-[200px] w-full p-4 items-center bg-transparent text-white rounded-md"
               >
                 <div className="w-1/3 flex items-center gap-4">
                   <img
