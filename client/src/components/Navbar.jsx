@@ -111,29 +111,29 @@ const Navbar = (props) => {
                 <div className="absolute right-5 mt-4 w-28 bg-transparent rounded-md  z-250 text-white font-bold shadow-md shadow-white">
                   <ul className="py-1 text-gray-yellow ">
                     <li>
-                      <a
-                        href="/recommend"
+                      <Link
+                        to="/recommend"
                         className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md shadow-caribbeangreen-200 hover:text-yellow-200"
                       >
                         Top Picks
-                      </a>
+                      </Link>
                     </li>
 
                     <li>
-                      <a
-                        href="/profile"
+                      <Link
+                        to="/profile"
                         className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md shadow-caribbeangreen-200 hover:text-yellow-200"
                       >
                        Profile
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="/order"
+                      <Link
+                        to="/order"
                         className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md shadow-caribbeangreen-200 hover:text-yellow-200"
                       >
                        My Orders
-                      </a>
+                      </Link>
                     </li>
 
 
@@ -153,9 +153,9 @@ const Navbar = (props) => {
             <div></div>
           )}
 
-          {/* {props.logged === true && <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={log_out}>
+          {/* {props.logged === true && <Link className="nav-link dropdown-toggle" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={log_out}>
             {name ? name : ""} */}
-          {/* </a>} */}
+          {/* </Link>} */}
         </div>
       </div>
     </nav>

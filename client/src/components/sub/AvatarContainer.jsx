@@ -79,6 +79,9 @@ const AvatarContainer = (props) => {
       else if(transcript.includes("tell")) {
         props.setIntent("describe_product");
       }
+      else if(transcript.includes("complete") && transcript.includes("purchase")) {
+        props.setIntent("complete_purchase");
+      }
       else {
         getIntent(transcript);
       }
