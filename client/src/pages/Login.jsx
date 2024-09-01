@@ -27,7 +27,7 @@ export default function Login(props) {
         localStorage.setItem("user", JSON.stringify(user));
         props.setLogged(true);
         props.setAnimation("Greeting");
-        props.setText("Hello Rajat! How are you? Click on me to speak.");
+        props.setText(`Hello ${user.name.split(' ')[0]}! How are you? Click on me to speak`);
         navigate("/recommend");
       } else {
         data = await data.json();

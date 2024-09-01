@@ -11,6 +11,7 @@ import AvatarContainer from './components/sub/AvatarContainer';
 import DescPage from './pages/DescPage';
 import CheckoutPage from './pages/Checkout';
 import CartPage from './pages/CartPage';
+import Profile from './pages/Profile';
 
 export default function App() {
   const [logged, setLogged] = useState(false);
@@ -31,7 +32,7 @@ export default function App() {
 
   return (
     <div className="max-h-screen min-w-screen flex flex-col font-inter bg-black overflow-y-hidden overflow-x-hidden">
-      <Navbar logged={logged} setLogged={setLogged} logout={logout} setLogoutModal={setLogoutModal} />
+      <Navbar logged={logged} setLogged={setLogged} logout={logout} setLogoutModal={setLogoutModal} cart={cart}/>
       <div className="absolute flex w-full lg:w-[30%] max-w-full h-auto lg:h-[87%] justify-center z-[200] top-24 right-0">
         <AvatarContainer text={text} setText={setText} setAudioTranscript={setAudioTranscript} intent={intent} setIntent={setIntent} animation={animation} setAnimation={setAnimation} currProduct={currProduct} setNegotiatedPrice={setNegotiatedPrice} />
       </div>
@@ -44,6 +45,7 @@ export default function App() {
         <Route path="/product/:id" element={<ProductDescription setLogged={setLogged} setCurrProduct={setCurrProduct} negotiatedPrice={negotiatedPrice} setNegotiatedPrice={setNegotiatedPrice} intent={intent} setIntent={setIntent} setCart={setCart} setText={setText} setAnimation={setAnimation} />} />
         <Route path="/checkout" element={<CheckoutPage setLogged={setLogged} cart={cart} />} />
         <Route path="/cartitems" element={<CartPage setLogged={setLogged} setCart={setCart} intent={intent} setIntent={setIntent} />} />
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
     </div>
   );
