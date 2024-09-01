@@ -139,6 +139,15 @@ const Navbar = (props) => {
                        Profile
                       </a>
                     </li>
+                    <li>
+                      <a
+                        href="/order"
+                        className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md shadow-caribbeangreen-200 hover:text-yellow-200"
+                      >
+                       My Orders
+                      </a>
+                    </li>
+
 
                     <li>
                       <button

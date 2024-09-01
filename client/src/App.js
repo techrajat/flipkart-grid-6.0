@@ -12,6 +12,7 @@ import DescPage from './pages/DescPage';
 import CheckoutPage from './pages/Checkout';
 import CartPage from './pages/CartPage';
 import Profile from './pages/Profile';
+import OrderPage from './pages/OrderPage';
 
 export default function App() {
   const [logged, setLogged] = useState(false);
@@ -47,6 +48,7 @@ export default function App() {
         <Route path="/checkout" element={<CheckoutPage setLogged={setLogged} cart={cart} />} />
         <Route path="/cartitems" element={<CartPage setLogged={setLogged} setCart={setCart} intent={intent} setIntent={setIntent} />} />
         <Route path="/profile" element={<Profile/>}/>
+        <Route path="/order" element={<OrderPage/>}/>
       </Routes>
     </div>
   );
