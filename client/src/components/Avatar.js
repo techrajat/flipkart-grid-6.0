@@ -23,6 +23,7 @@ const defaultVoice = {
   default: false
 };
 
+
 const mouthCues = ["X", "B", "A", "C", "E", "F", "D", "H", "G"];
 
 export function Avatar(props) {
@@ -55,7 +56,8 @@ export function Avatar(props) {
     const synth = window.speechSynthesis;
     const setVoiceOnceAvailable = () => {
       const voices = synth.getVoices();
-      let selectedVoice = voices.find(v => v.name === defaultVoice.name);
+      // let selectedVoice = voices.find(v => v.name === defaultVoice.name);
+      let selectedVoice = voices[0];
 
       if (selectedVoice) {
         const u = new SpeechSynthesisUtterance(props.text);

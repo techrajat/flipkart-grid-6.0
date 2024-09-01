@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <motion.div
-      className="bg-white rounded-lg  h-[380px] p-4 m-2 flex flex-col text-black"
+      className="bg-white rounded-lg h-[380px] p-4 m-2 flex flex-col text-black  "
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       onClick={handleClick}
@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
       <img src={product.image[0] ? product.image[0] : "/images/image-not-found.png"} alt={product.product_name} onError={(e) => {
         e.target.onerror = null;
         e.target.src = "/images/image-not-found.png";
-      }} className="h-48 object-cover shadow-md shadow-black  bg-white p-2 transition-transform duration-300 ease-in-out hover:scale-105" />
+      }} className="h-48 object-cover shadow-md shadow-black  bg-white p-2 transition-transform duration-300 ease-in-out hover:scale-105 " />
       <h2 className="text-lg font-semibold mt-4">{product.product_name}</h2>
       <p className=" mt-2">{shortDescription}</p>
       <p className="text-gray-400 font-bold mt-1">₹{product.retail_price}</p>
