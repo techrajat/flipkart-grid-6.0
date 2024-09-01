@@ -71,32 +71,50 @@ const ProductDescription = (props) => {
     }
   };
 
-  
-  useEffect(()=>{
-    if(props.intent === "checkout") {
+  useEffect(() => {
+    if (props.intent === "checkout") {
       handleBuyNow();
       props.setIntent("");
     }
-    else if(props.intent === "add_to_cart") {
+    else if (props.intent === "add_to_cart") {
       handleAddToCart();
       const addToCartResonses = ["Item added to your cart!",
-                                 "Successfully added to cart!",
-                                 "Item added to cart.",
-                                 "Successfully added to your cart!",
-                                 "Your item is in the cart!",
-                                 "Item has been added to the cart.",
-                                 "Added to your cart!",
-                                 "Item successfully placed in your cart!",
-                                 "Added to cart!",
-                                 "Your item is now in the cart!"]
+        "Successfully added to cart!",
+        "Item added to cart.",
+        "Successfully added to your cart!",
+        "Your item is in the cart!",
+        "Item has been added to the cart.",
+        "Added to your cart!",
+        "Item successfully placed in your cart!",
+        "Added to cart!",
+        "Your item is now in the cart!"]
       const response = addToCartResonses[Math.floor(Math.random() * addToCartResonses.length)];
       props.setText(response);
       props.setAnimation("Salute");
       props.setIntent("");
     }
+    else if (props.intent === "describe_product") {
+      let category = product.product_category_tree;
+      if (!category.trim())
+        category = '';
+      else {
+        category = category.split('>>').map(cat => cat.trim());
+        if (category.length === 0) {
+          category = '';
+        } else if (category.length === 1) {
+          category = category[0];
+        } else {
+          category = category.slice(0, 2).join(' >> ');
+        }
+      }
+
+      props.setText(`Discover the ${product.product_name} from ${product.brand}, available for just ${product.retail_price} and boasting an impressive ${product.product_rating} stars. This standout product falls under our ${category} category, combining the qualities to meet your needs.`);
+      props.setAnimation("Talking");
+      props.setIntent("");
+    }
     //eslint-disable-next-line
   }, [props.intent]);
-  
+
   if (!product) {
     return (
       <div className="flex justify-center text-white items-center min-h-screen text-center text-3xl text-red-500">
@@ -131,6 +149,7 @@ const ProductDescription = (props) => {
       <div className="lg:w-[50%] w-full text-richblack-100 flex flex-col justify-center p-6 gap-4">
         <h1 className="text-4xl font-bold mb-4">{product.product_name}</h1>
         <p id="retailPrice" className="text-2xl text-green-600 mb-4">₹{product.retail_price}</p>
+        <p className="text-2xl text-green-600 mb-4">Rating: {product.product_rating}</p>
         <p className="text-gray-700 mb-6">
           {product.description.length > 300 ? `${product.description.substring(0, 200)}...` : product.description}
         </p>

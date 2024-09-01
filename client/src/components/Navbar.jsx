@@ -4,7 +4,6 @@ import { googleLogout } from "@react-oauth/google";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
-import { FaProductHunt } from "react-icons/fa6";
 import logo from "../assets/7.png";
 
 const Navbar = (props) => {
@@ -39,7 +38,7 @@ const Navbar = (props) => {
       <div className="container mx-auto flex justify-between items-center h-full">
         <div className="relative left-8 text-3xl flex gap-4 items-center justify-center font-bold text-white px-4 py-2 shadow-md shadow-pink-200">
           <Link to="/">
-            <img src={logo}  width="200" />
+            <img src={logo}  width="200" alt="" />
           </Link>
         </div>
         <div className="flex items-center gap-10 ">
@@ -54,30 +53,19 @@ const Navbar = (props) => {
             <FaHome size={24} />
             Home
           </NavLink>
-          {/* <NavLink
-            to="/recommend"
-            className={({ isActive }) =>
-              `hover:text-yellow-100 px-4 py-2 flex gap-3 shadow-md shadow-caribbeangreen-100 font-bold ${
-                isActive ? 'text-yellow-200' : ''
-              }`
-            }
-          >
-            <FaProductHunt size={24}/>
-            Personalised Products
-          </NavLink> */}
           <NavLink
             to="/cartitems"
             className={({ isActive }) =>
-              `hover:text-yellow-100 flex  px-4 py-2 shadow-md shadow-caribbeangreen-100 font-bold ${
+              `hover:text-yellow-100 flex gap-3 px-4 py-2 shadow-md shadow-caribbeangreen-100 font-bold ${
                 isActive ? "text-yellow-200" : ""
               }`
             }
           >
             <FaShoppingCart size={24} />
             
-            <span className="relative bottom-2 right-3 rounded-full w-5 h-5 bg-caribbeangreen-100 text-black flex items-center justify-center text-xs animate-bounce">
+            {/* <span className="relative bottom-2 right-3 rounded-full w-5 h-5 bg-caribbeangreen-100 text-black flex items-center justify-center text-xs animate-bounce">
                  {props.cart?.length || 0}
-            </span>
+            </span> */}
               Cart
     
           </NavLink>
