@@ -160,9 +160,9 @@ const Navbar = (props) => {
             <div></div>
           )}
 
-          {/* {props.logged === true && <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={log_out}>
+          {/* {props.logged === true && <Link className="nav-link dropdown-toggle" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false" onClick={log_out}>
             {name ? name : ""} */}
-          {/* </a>} */}
+          {/* </Link>} */}
         </div>
       </div>
     </nav>

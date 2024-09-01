@@ -45,10 +45,10 @@ export default function App() {
         <Route path="/products" element={<ProductsPage setLogged={setLogged} audioTranscript={audioTranscript} setText={setText} />} />
         <Route path="/login" element={<Login setText={setText} setLogged={setLogged} logoutModal={logoutModal} setLogoutModal={setLogoutModal} setAnimation={setAnimation} />} />
         <Route path="/product/:id" element={<ProductDescription setLogged={setLogged} setCurrProduct={setCurrProduct} setCurrPrice={setCurrPrice} negotiatedPrice={negotiatedPrice} setNegotiatedPrice={setNegotiatedPrice} intent={intent} setIntent={setIntent} setCart={setCart} setText={setText} setAnimation={setAnimation} />} />
-        <Route path="/checkout" element={<CheckoutPage setLogged={setLogged} cart={cart} />} />
+        <Route path="/checkout" element={<CheckoutPage setLogged={setLogged} cart={cart} setCart={setCart} intent={intent} setIntent={setIntent} setText={setText} setAnimation={setAnimation} />} />
         <Route path="/cartitems" element={<CartPage setLogged={setLogged} setCart={setCart} intent={intent} setIntent={setIntent} />} />
         <Route path="/profile" element={<Profile/>}/>
-        <Route path="/order" element={<OrderPage/>}/>
+        <Route path="/order" element={<OrderPage setLogged={setLogged}/>}/>
       </Routes>
     </div>
   );

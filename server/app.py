@@ -19,5 +19,8 @@ app.register_blueprint(prediction.prediction_bp)
 import routes.cart as cart
 app.register_blueprint(cart.cart_bp)
 
+import routes.orders as orders
+app.register_blueprint(orders.orders_bp)
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

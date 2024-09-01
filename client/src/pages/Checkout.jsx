@@ -65,10 +65,43 @@ const CheckoutPage = (props) => {
     );
   };
 
-  const handleCompletePurchase = () => {
-    navigate("/order");
-  };
+  const handleCompletePurchase = async()=>{
+    let data = await fetch(`http://127.0.0.1:5000/addtoorders`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": localStorage.getItem('token')
+      },
+      body: `orders=${encodeURIComponent(JSON.stringify(props.cart))}`
+    });
+    if (data.status === 200) {
+      const empty = await fetch(`http://127.0.0.1:5000/emptycart`, {
+        method: "GET",
+        headers: {"Authorization": localStorage.getItem('token')}
+      });
+      if(empty.status === 200) {
+        props.setCart([]);
+        navigate("/order");
+      }
+    }
+  }
 
+  useEffect(()=>{
+    if(props.intent === "complete_purchase") {
+      const responses = ["Thanks for shopping with us! We hope you love your purchase. Have a great day!",
+                        "We appreciate your order! Thanks for choosing us and enjoy your new items!",
+                        "Thank you for your purchase! We're glad to have you as a customer. See you soon!",
+                        "Thanks for your order! We hope you're happy with your purchase. Have a wonderful day!",
+                        "Your purchase is complete! Thanks for shopping with us. Enjoy your day!"]
+      const response = responses[Math.floor(Math.random() * responses.length)];
+      props.setText(response);
+      props.setAnimation("Thankful");
+      handleCompletePurchase();
+      props.setIntent("");
+    }
+    //eslint-disable-next-line
+  }, [props.intent]);
+  
   return (
     <div className="min-h-screen p-6 flex justify-start items-center bg-transparent z-[120] text-richblack-25 ">
       <div className=" w-full max-w-5xl bg-transparent p-6 rounded-lg shadow-lg shadow-richblack-100 relative ">
