@@ -58,14 +58,6 @@ def negotiation_response(user_price, discount_price, curr_price):
         f"Great! I'll accept {user_price} rupees for this product. Thanks for your offer!"
     ]
     
-    negotiation_deny = [
-        f"I can offer a small discount, bringing it down to {seller_price} rupees. Let me know what you think!",
-        f"How about this? I'll reduce it slightly to {seller_price} rupees. Does that work for you?",
-        f"We can adjust the price to {seller_price} rupees. So let's make a deal!",
-        f"I'm willing to go down to {seller_price} rupees. It's a great price for this product!",
-        f"I can drop the price to {seller_price} rupees. I think you'll find this offer quite appealing!"
-    ]
-    
     negotiation_interactive = [
         f"I can offer {seller_price} rupees. How does that work for you?",
         f"What if we adjust the price to {seller_price} rupees? Does that sound good?",
@@ -73,13 +65,21 @@ def negotiation_response(user_price, discount_price, curr_price):
         f"I'm willing to adjust the price to {seller_price} rupees. How about that?",
         f"How about {seller_price} rupees? I think that's a fair deal."
     ]
-    if user_price < discount_price:
-        return seller_price, random.choice(negotiation_deny)
+
+    negotiation_final = [
+       f"The the best I can do is {seller_price} rupees. I hope this works for you!",
+       f"I've given you my final offer at {seller_price} rupees. It's a great deal!",
+       f"I can't go any lower than {seller_price} rupees. Let's wrap this up!",
+       f"The lowest I can offer is {seller_price} rupees. It's a fair price for this quality.",
+       f"I'm giving you the best possible price at {seller_price} rupees. Let's move forward with this!"
+    ]
+
+    if seller_price == user_price:
+        return seller_price, random.choice(negotiation_agree)
+    elif seller_price == curr_price:
+        return seller_price, random.choice(negotiation_final)
     else:
-        if seller_price == user_price:
-            return seller_price, random.choice(negotiation_agree)
-        else:
-            return seller_price, random.choice(negotiation_interactive)
+        return seller_price, random.choice(negotiation_interactive)
     
 def response(query, uniq_id, curr_price):
     intent = predict_intent(query)
