@@ -76,6 +76,9 @@ const AvatarContainer = (props) => {
       if (transcript.includes('cart')) {
         props.setIntent("add_to_cart");
       }
+      else if(transcript.includes("tell")) {
+        props.setIntent("describe_product");
+      }
       else {
         getIntent(transcript);
       }
