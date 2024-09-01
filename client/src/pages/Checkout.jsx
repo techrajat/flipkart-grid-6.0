@@ -66,14 +66,14 @@ const CheckoutPage = (props) => {
       body: `orders=${encodeURIComponent(JSON.stringify(props.cart))}`
     });
     if (data.status === 200) {
-      if(props.cart.length > 1) {
-        data = await fetch(`http://127.0.0.1:5000/emptycart`, {
-          method: "GET",
-          headers: {"Authorization": localStorage.getItem('token')}
-        });
+      const empty = await fetch(`http://127.0.0.1:5000/emptycart`, {
+        method: "GET",
+        headers: {"Authorization": localStorage.getItem('token')}
+      });
+      if(empty.status === 200) {
+        props.setCart([]);
+        navigate("/order");
       }
-      props.setCart([]);
-      navigate("/order");
     }
   }
 
