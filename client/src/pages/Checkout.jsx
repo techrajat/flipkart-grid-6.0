@@ -23,8 +23,14 @@ const CheckoutPage = (props) => {
 
   useEffect(() => {
     setSelectedProducts(props.cart);
-    const user = JSON.parse(localStorage.getItem('user'));
-    setShippingInfo({name: user.name, address: user.address, city: user.city, state: user.state, zip: user.zip});
+    const user = JSON.parse(localStorage.getItem("user"));
+    setShippingInfo({
+      name: user.name,
+      address: user.address,
+      city: user.city,
+      state: user.state,
+      zip: user.zip,
+    });
     //eslint-disable-next-line
   }, []);
 
@@ -45,21 +51,24 @@ const CheckoutPage = (props) => {
     console.log("Selected Products:", selectedProducts);
   };
 
-  useEffect(()=>{
-    if (localStorage.getItem('token')) {
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
       props.setLogged(true);
     }
     //eslint-disable-next-line
   }, []);
 
   const calculateTotal = () => {
-    return selectedProducts.reduce((total, product) => total + product.retail_price * product.quantity, 0);
+    return selectedProducts.reduce(
+      (total, product) => total + product.retail_price * product.quantity,
+      0
+    );
   };
 
-  const handleCompletePurchase = ()=>{
+  const handleCompletePurchase = () => {
     navigate("/order");
-  }
-  
+  };
+
   return (
     <div className="min-h-screen p-6 flex justify-start items-center bg-transparent z-[120] text-richblack-25 ">
       <div className=" w-full max-w-5xl bg-transparent p-6 rounded-lg shadow-lg shadow-richblack-100 relative ">
@@ -126,35 +135,60 @@ const CheckoutPage = (props) => {
               <h2 className="text-2xl font-semibold mb-4">
                 Payment Information
               </h2>
-              <input
-                type="text"
-                name="cardNumber"
-                placeholder="Card Number"
-                value={paymentInfo.cardNumber}
-                onChange={handlePaymentChange}
-                className="p-2 border border-gray-300 rounded-lg mb-4 bg-transparent"
-                required
-              />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  name="expiryDate"
-                  placeholder="Expiry Date (MM/YY)"
-                  value={paymentInfo.expiryDate}
+
+              {/* Payment Method Selection */}
+              <div className="mb-4">
+                <label className="block text-lg font-medium mb-2">
+                  Select Payment Method
+                </label>
+                <select
+                  name="paymentMethod"
+                  value={paymentInfo.paymentMethod}
                   onChange={handlePaymentChange}
-                  className="p-2 border border-gray-300 rounded-lg bg-transparent"
+                  className="p-2 border border-gray-300 rounded-lg bg-transparent w-full"
                   required
-                />
-                <input
-                  type="text"
-                  name="cvv"
-                  placeholder="CVV"
-                  value={paymentInfo.cvv}
-                  onChange={handlePaymentChange}
-                  className="p-2 border border-gray-300 rounded-lg bg-transparent"
-                  required
-                />
+                >
+                  <option value="" disabled>
+                    Select a payment method
+                  </option>
+                  <option value="creditCard">
+                    Rupay Credit Card (XXXX-XXXX-XXXX-3422)
+                  </option>
+                  <option value="debitCard">
+                    Visa Debit Card (XXXX-XXXX-XXXX-1234)
+                  </option>
+                  <option value="netBanking">Net Banking (HDFC Bank)</option>
+                  <option value="upi">UPI (Paytm@upi)</option>
+                </select>
               </div>
+
+              {/* Display selected payment option details */}
+              {paymentInfo.paymentMethod === "creditCard" && (
+                <div className="p-4 border border-gray-300 rounded-lg bg-transparent">
+                  <p>Card Type:Rupay Credit Card</p>
+                  <p>Card Number: XXXX-XXXX-XXXX-3422</p>
+                </div>
+              )}
+
+              {paymentInfo.paymentMethod === "debitCard" && (
+                <div className="p-4 border border-gray-300 rounded-lg bg-transparent">
+                  <p>Card Type:Visa Debit Card</p>
+                  <p>Card Number: XXXX-XXXX-XXXX-1234</p>
+                </div>
+              )}
+
+              {paymentInfo.paymentMethod === "netBanking" && (
+                <div className="p-4 border border-gray-300 rounded-lg bg-transparent">
+                  <p>Bank: HDFC Bank</p>
+                  <p>Account Number: XXXX-XXXX-XXXX-5678</p>
+                </div>
+              )}
+
+              {paymentInfo.paymentMethod === "upi" && (
+                <div className="p-4 border border-gray-300 rounded-lg bg-transparent">
+                  <p>UPI ID: paytm@upi</p>
+                </div>
+              )}
             </div>
           </div>
 
@@ -164,7 +198,10 @@ const CheckoutPage = (props) => {
               <div className="border-t border-gray-300 pt-4">
                 <p className="text-lg font-semibold">Item Summary:</p>
                 {selectedProducts.map((product) => (
-                  <div key={product.uniq_id} className="flex items-center gap-4 mb-4">
+                  <div
+                    key={product.uniq_id}
+                    className="flex items-center gap-4 mb-4"
+                  >
                     <img
                       src={product.image[0]}
                       alt={product.product_name}
@@ -174,24 +211,30 @@ const CheckoutPage = (props) => {
                       <p className="text-gray-700 font-semibold">
                         {product.product_name}
                       </p>
-                      <p className="text-gray-500">Quantity: {product.quantity}</p>
-                      <p className="text-gray-700">₹{product.retail_price * product.quantity}</p>
+                      <p className="text-gray-500">
+                        Quantity: {product.quantity}
+                      </p>
+                      <p className="text-gray-700">
+                        ₹{product.retail_price * product.quantity}
+                      </p>
                     </div>
                   </div>
                 ))}
               </div>
-            <div/>
-            <div className=" bg-richblack-900 text-caribbeangreen-100 p-4 shadow-md shadow-caribbeangreen-100 border-t flex justify-between items-center max-w-3xl mx-auto z-50">
-              <p className="text-lg font-semibold text-gray-700"> Total: ₹{calculateTotal()}</p>
-              <button
-                type="submit"
-                onClick={handleCompletePurchase}
-                className="bg-blue-500 text-white py-3 px-6 mt-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors"
-              >
-                Complete Purchase
-              </button> 
-              
-            </div>
+              <div />
+              <div className=" bg-richblack-900 text-caribbeangreen-100 p-4 shadow-md shadow-caribbeangreen-100 border-t gap-x-20 flex justify-between items-center max-w-3xl mx-auto z-50">
+                <p className="text-lg font-semibold text-gray-700 w-full">
+                  {" "}
+                  Total: ₹{calculateTotal()}
+                </p>
+                <button
+                  type="submit"
+                  onClick={handleCompletePurchase}
+                  className="bg-blue-500 text-white py-3 px-6 mt-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors w-full"
+                >
+                   Purchase
+                </button>
+              </div>
             </div>
           </div>
         </form>

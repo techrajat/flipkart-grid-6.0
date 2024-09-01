@@ -57,7 +57,7 @@ export function Avatar(props) {
     const setVoiceOnceAvailable = () => {
       const voices = synth.getVoices();
       let selectedVoice = voices.find(v => v.name === defaultVoice.name);
-      // let selectedVoice = voices[0];
+      // let selectedVoice = voices[1];
 
       if (selectedVoice) {
         const u = new SpeechSynthesisUtterance(props.text);
