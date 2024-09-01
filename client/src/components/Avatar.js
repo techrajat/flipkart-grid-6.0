@@ -29,7 +29,6 @@ const mouthCues = ["X", "B", "A", "C", "E", "F", "D", "H", "G"];
 export function Avatar(props) {
   const [utterance, setUtterance] = useState(null);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  // const [props.animation, props.setAnimation] = useState("Idle");
 
   const { scene } = useGLTF('/models/66c388c9119519ed2a436546.glb');
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
@@ -126,7 +125,7 @@ export function Avatar(props) {
     if (isSpeaking) {
       const time = clock.getElapsedTime();
   
-      // Update lip movement every 0.1 seconds (adjust this value as needed)
+      // Update lip movement every 0.1 seconds
       if (time % 0.1 < 0.016) {
         Object.values(corresponding).forEach(value => {
           if (nodes.Wolf3D_Head.morphTargetDictionary[value] !== undefined && nodes.Wolf3D_Teeth.morphTargetDictionary[value] !== undefined) {
@@ -154,8 +153,6 @@ export function Avatar(props) {
       });
     }
   });
-  
-  
 
   return (
     <group {...props} dispose={null} ref={group}>

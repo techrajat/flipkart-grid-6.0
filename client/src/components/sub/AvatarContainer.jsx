@@ -20,12 +20,13 @@ const AvatarContainer = (props) => {
         "Content-Type": "application/x-www-form-urlencoded",
         "Authorization": localStorage.getItem('token')
       },
-      body: `query=${encodeURIComponent(transcript)}&uniq_id=${encodeURIComponent(props.currProduct)}`
+      body: `query=${encodeURIComponent(transcript)}&uniq_id=${encodeURIComponent(props.currProduct)}&curr_price=${encodeURIComponent(props.currPrice)}`
     });
     if (response.status === 200) {
       const res = await response.json();
       props.setText(res.response);
       props.setNegotiatedPrice(res.newPrice);
+      props.setCurrPrice(res.newPrice);
     }
   }
 

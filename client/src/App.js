@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react';
+import { React, useState } from 'react';
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
@@ -22,6 +22,7 @@ export default function App() {
   const [intent, setIntent] = useState("");
   const [negotiatedPrice, setNegotiatedPrice] = useState(0);
   const [currProduct, setCurrProduct] = useState(null);
+  const [currPrice, setCurrPrice] = useState(0);
   const [cart, setCart] = useState([]);
 
   const logout = () => {
@@ -34,7 +35,7 @@ export default function App() {
     <div className="max-h-screen min-w-screen flex flex-col font-inter bg-black overflow-y-hidden overflow-x-hidden">
       <Navbar logged={logged} setLogged={setLogged} logout={logout} setLogoutModal={setLogoutModal} cart={cart}/>
       <div className="absolute flex w-full lg:w-[30%] max-w-full h-auto lg:h-[87%] justify-center z-[200] top-24 right-0">
-        <AvatarContainer text={text} setText={setText} setAudioTranscript={setAudioTranscript} intent={intent} setIntent={setIntent} animation={animation} setAnimation={setAnimation} currProduct={currProduct} setNegotiatedPrice={setNegotiatedPrice} />
+        <AvatarContainer text={text} setText={setText} setAudioTranscript={setAudioTranscript} intent={intent} setIntent={setIntent} animation={animation} setAnimation={setAnimation} currProduct={currProduct} negotiatedPrice={negotiatedPrice} setNegotiatedPrice={setNegotiatedPrice} currPrice={currPrice} setCurrPrice={setCurrPrice} />
       </div>
       <StarsCanvas />
       <Routes>
@@ -42,7 +43,7 @@ export default function App() {
         <Route path="/recommend" element={<RecommendedProducts setLogged={setLogged} />} />
         <Route path="/products" element={<ProductsPage setLogged={setLogged} audioTranscript={audioTranscript} setText={setText} />} />
         <Route path="/login" element={<Login setText={setText} setLogged={setLogged} logoutModal={logoutModal} setLogoutModal={setLogoutModal} setAnimation={setAnimation} />} />
-        <Route path="/product/:id" element={<ProductDescription setLogged={setLogged} setCurrProduct={setCurrProduct} negotiatedPrice={negotiatedPrice} setNegotiatedPrice={setNegotiatedPrice} intent={intent} setIntent={setIntent} setCart={setCart} setText={setText} setAnimation={setAnimation} />} />
+        <Route path="/product/:id" element={<ProductDescription setLogged={setLogged} setCurrProduct={setCurrProduct} setCurrPrice={setCurrPrice} negotiatedPrice={negotiatedPrice} setNegotiatedPrice={setNegotiatedPrice} intent={intent} setIntent={setIntent} setCart={setCart} setText={setText} setAnimation={setAnimation} />} />
         <Route path="/checkout" element={<CheckoutPage setLogged={setLogged} cart={cart} />} />
         <Route path="/cartitems" element={<CartPage setLogged={setLogged} setCart={setCart} intent={intent} setIntent={setIntent} />} />
         <Route path="/profile" element={<Profile/>}/>

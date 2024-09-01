@@ -22,7 +22,8 @@ def negotiate():
             return {"error": "User not found"}, 400
         query = request.form['query']
         uniq_id = request.form['uniq_id']
-        res = intent_response.response(query, uniq_id)
+        curr_price = int(request.form['curr_price'])
+        res = intent_response.response(query, uniq_id, curr_price)
         return {"newPrice": res[0], "response": res[1]}, 200
     except:
         return {"error": "Server error"}, 500
@@ -35,7 +36,7 @@ def checkout():
         if not user:
             return {"error": "User not found"}, 400
         query = request.form['query']
-        res = intent_response.response(query, None)
+        res = intent_response.response(query, None, None)
         return {"response": res[1]}, 200
     except:
         return {"error": "Server error"}, 500
