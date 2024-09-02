@@ -8,6 +8,7 @@ collection = mydb['Products']
 users = mydb['Users']
 
 import search_response
+import recommender
 
 # Endpoint for search query
 @search_bp.route("/search", methods=['POST'])
@@ -55,5 +56,20 @@ def recommend():
         search_string = search_string['search_string']
         res = search_response.filter_response(search_string, 50)
         return {"products": res[0]}, 200
+    except:
+        return {"error": "Server error"}, 500
+    
+# Endpoint for giving combo
+@search_bp.route("/combo", methods=['POST'])
+def combo():
+    try:
+        user = request.environ['user']
+        if not user:
+            return {"error": "User not found"}, 400
+        product = request.form['uniq_id']
+        similarProduct = recommender.recommendations(product, 1)
+        similarProduct = similarProduct.tolist()
+        similarProduct = collection.find_one({'uniq_id': similarProduct[0]}, {'_id': 0})
+        return {"similarProduct": similarProduct}, 200
     except:
         return {"error": "Server error"}, 500

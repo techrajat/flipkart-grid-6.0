@@ -12,6 +12,7 @@ const ProductDescription = (props) => {
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [images, setImages] = useState([]);
+  const [comboProduct, setComboProduct] = useState({});
 
   const getProduct = async () => {
     const response = await fetch("http://127.0.0.1:5000/getproduct", {
@@ -114,6 +115,22 @@ const ProductDescription = (props) => {
     }
     //eslint-disable-next-line
   }, [props.intent]);
+
+  const getComboProduct = async()=>{
+    const response = await fetch("http://127.0.0.1:5000/combo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": localStorage.getItem('token')
+      },
+      body: `uniq_id=${encodeURIComponent(product.uniq_id)}`
+    });
+    if (response.status === 200) {
+      const res = await response.json();
+      setComboProduct(res.similarProduct);
+      console.log(res.similarProduct)
+    }
+  }
 
   if (!product) {
     return (
