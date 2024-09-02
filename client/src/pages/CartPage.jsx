@@ -128,8 +128,8 @@ const CartPage = (props) => {
                   <div className="flex items-center">
                     <RiDeleteBinLine
                       size={36}
-                      style={{ cursor: "pointer" }} // Set cursor to pointer to indicate it's clickable
-                      onClick={() => handleRemoveItem(item.uniq_id)} // Attach click event handler
+                      style={{ cursor: "pointer" }}
+                      onClick={() => handleRemoveItem(item.uniq_id)}
                     />
                   </div>
                 </div>

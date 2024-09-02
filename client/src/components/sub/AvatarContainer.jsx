@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Canvas } from "@react-three/fiber";
 import { Experience } from "../Experience";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const AvatarContainer = (props) => {
   const navigate = useNavigate();
   const [listen, setListen] = useState(false);
+  const location = useLocation();
+  const pathname = location.pathname;
 
   const {
     transcript,
@@ -37,7 +39,7 @@ const AvatarContainer = (props) => {
         "Content-Type": "application/x-www-form-urlencoded",
         "Authorization": localStorage.getItem('token')
       },
-      body: `query=${encodeURIComponent(transcript)}`
+      body: `query=${encodeURIComponent("I want to checkout")}`
     });
     if (response.status === 200) {
       const res = await response.json();
@@ -64,8 +66,13 @@ const AvatarContainer = (props) => {
         getNegotiatedResponse();
       }
       else if (res.intent === "checkout") {
-        props.setAnimation("Thankful");
-        getCheckoutResponse();
+        if(pathname.includes('product')) {
+          props.setIntent("combo");
+        }
+        else {
+          props.setAnimation("Thankful");
+          getCheckoutResponse();
+        }
       }
     }
   };
@@ -82,12 +89,27 @@ const AvatarContainer = (props) => {
       else if(transcript.includes("complete") && transcript.includes("purchase")) {
         props.setIntent("complete_purchase");
       }
+      else if(transcript.includes("accept")) {
+        props.setIntent("accept_offer");
+      }
+      else if(transcript.includes("reject")) {
+        props.setIntent("reject_offer");
+      }
       else {
         getIntent(transcript);
       }
     }
       //eslint-disable-next-line
   }, [listening, transcript]);
+
+  useEffect(()=>{
+    if(props.intent === "final_checkout") {
+      props.setAnimation("Thankful");
+      getCheckoutResponse();
+      props.setIntent("");
+    }
+    //eslint-disable-next-line
+  }, [props.intent]);
 
   const changeScript = () => {
     props.setText("Speak.");

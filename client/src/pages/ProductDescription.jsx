@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import toast from "react-hot-toast";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -10,7 +10,6 @@ import CombosAndOffersModal from '../components/ComboAndOfferModal';
 
 const ProductDescription = (props) => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [images, setImages] = useState([]);
   const [comboProducts, setComboProducts] = useState([]);
@@ -40,6 +39,40 @@ const ProductDescription = (props) => {
     //eslint-disable-next-line
   }, [id]);
 
+  const handleOpenModal = async () => {
+    const response = await fetch("http://127.0.0.1:5000/combo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": localStorage.getItem('token')
+      },
+      body: `uniq_id=${encodeURIComponent(product.uniq_id)}`
+    });
+    if (response.status === 200) {
+      const res = await response.json();
+      let originalProduct = product;
+      if (props.negotiatedPrice !== 0 && props.negotiatedPrice !== product.retail_price) {
+        originalProduct.retail_price = props.negotiatedPrice;
+      }
+      setComboProducts([originalProduct, res.similarProduct]);
+      setModalIsOpen(true);
+      const price = (originalProduct.retail_price + res.similarProduct.retail_price) * 0.9;
+      const comboResponses = [
+        `Customers who loved ${product.product_name} also went for ${res.similarProduct.product_name}. Grab both now for just ${price} rupees!`,
+        `Bundle deal! Pair ${product.product_name} with ${res.similarProduct.product_name} for only ${price} rupees. It's a win-win!`,
+        `Why stop at ${product.product_name}? Add ${res.similarProduct.product_name} to your cart too and enjoy the combo for ${price} rupees!`,
+        `Double the value! Get ${product.product_name} and ${res.similarProduct.product_name} together for just ${price} rupees.`,
+        `Complete your purchase with ${res.similarProduct.product_name} alongside ${product.product_name}. Special combo offer at ${price} rupees!`,
+      ]
+      const randomResponse = comboResponses[Math.floor(Math.random() * comboResponses.length)];
+      props.setText(randomResponse);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
+  };
+
   useEffect(() => {
     if (props.negotiatedPrice !== 0 && props.negotiatedPrice !== product.retail_price) {
       document.getElementById('retailPrice').innerHTML = `<del>₹${product.retail_price}</del> ₹${props.negotiatedPrice}`;
@@ -48,13 +81,7 @@ const ProductDescription = (props) => {
   }, [props.negotiatedPrice]);
 
   const handleBuyNow = () => {
-    const buyProduct = product;
-    buyProduct.quantity = 1;
-    if (props.negotiatedPrice !== 0 && props.negotiatedPrice !== buyProduct.retail_price) {
-      buyProduct.retail_price = props.negotiatedPrice;
-    }
-    props.setCart([buyProduct]);
-    navigate('/checkout');
+    handleOpenModal();
   };
 
   const handleAddToCart = async () => {
@@ -116,28 +143,13 @@ const ProductDescription = (props) => {
       props.setAnimation("Talking");
       props.setIntent("");
     }
+    else if(props.intent === "combo") {
+      handleOpenModal();
+      props.setAnimation("Talking");
+      props.setIntent("");
+    }
     //eslint-disable-next-line
   }, [props.intent]);
-
-  const handleOpenModal = async () => {
-    const response = await fetch("http://127.0.0.1:5000/combo", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Authorization": localStorage.getItem('token')
-      },
-      body: `uniq_id=${encodeURIComponent(product.uniq_id)}`
-    });
-    if (response.status === 200) {
-      const res = await response.json();
-      setComboProducts(comboProducts.concat(res.similarProduct));
-      setModalIsOpen(true);
-    }
-  };
-
-  const handleCloseModal = () => {
-    setModalIsOpen(false);
-  };
 
   if (!product) {
     return (
@@ -192,7 +204,7 @@ const ProductDescription = (props) => {
           View Combos and Offers
         </button>
 
-      <CombosAndOffersModal isOpen={modalIsOpen} onClose={handleCloseModal} comboProducts={comboProducts} />
+      <CombosAndOffersModal isOpen={modalIsOpen} onClose={handleCloseModal} comboProducts={comboProducts} intent={props.intent} setIntent={props.setIntent} setCart={props.setCart} />
     </div>
   );
 };
