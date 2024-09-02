@@ -6,6 +6,10 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import CombosAndOffersModal from '../components/ComboAndOfferModal';
+import {products} from "../components/ProductsData";
+
+
 
 const ProductDescription = (props) => {
   const { id } = useParams();
@@ -13,6 +17,18 @@ const ProductDescription = (props) => {
   const [product, setProduct] = useState(null);
   const [images, setImages] = useState([]);
   const [comboProduct, setComboProduct] = useState({});
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  
+
+  const handleOpenModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
+  };
+  
 
   const getProduct = async () => {
     const response = await fetch("http://127.0.0.1:5000/getproduct", {
@@ -179,7 +195,13 @@ const ProductDescription = (props) => {
         >
           Buy Now
         </button>
+        
       </div>
+      <button className="bg-pink-500 hover:bg-pink-200 text-white py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105" onClick={handleOpenModal}>
+          View Combos and Offers
+        </button>
+
+      <CombosAndOffersModal isOpen={modalIsOpen} onClose={handleCloseModal} selectedproduct={product}  products={products} />
     </div>
   );
 };
