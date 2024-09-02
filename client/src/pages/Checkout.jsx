@@ -265,7 +265,7 @@ const CheckoutPage = (props) => {
                   onClick={handleCompletePurchase}
                   className="bg-blue-500 text-white py-3 px-6 mt-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors w-full"
                 >
-                   Purchase
+                   Complete Purchase
                 </button>
               </div>
             </div>
