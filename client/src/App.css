@@ -1,5 +1,3 @@
-/* Assuming you have a separate CSS file or using inline styles */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,7 +13,6 @@ html {
 }
 
 html, body {
-  /* height:auto; */
   margin:0;
   padding:0
 }
@@ -33,7 +30,6 @@ html, body {
   -webkit-text-fill-color: transparent;
 }
 
-
 .Welcome-box {
   isolation: isolate;
   overflow: hidden;
@@ -49,7 +45,6 @@ html, body {
   width: max-content;
   transition: 0.45s cubic-bezier(0.6, 0.6, 0, 1) box-shadow;
 }
-
 
 .container {
   max-width: 100rem;
@@ -174,18 +169,14 @@ html, body {
   background: var(--primary);
 }
 
-/* Custom scrollbar styles */
 .no-scrollbar::-webkit-scrollbar {
-  display: none; /* Hide scrollbar on Chrome, Safari, and Opera */
+  display: none;
 }
 
 .no-scrollbar {
-  -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
-  scrollbar-width: none; /* Hide scrollbar on Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-
-
-/* Add these styles in your CSS file or inside a <style> tag */
 
 .modal-overlay {
   position: fixed;
@@ -193,7 +184,6 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -202,15 +192,13 @@ html, body {
 
 .modal-content {
   position: relative;
-  background-color: transparent;
+  background-color: white;
   
   padding: 20px;
   border-radius: 8px;
   max-width: 600px;
   height:auto;
   width: 100%;
-  box-shadow: 10px 10px 30px rgba(255, 255, 255, 0.4); 
   outline: none;
   z-index: 191;
 }
-

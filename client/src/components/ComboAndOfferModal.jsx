@@ -67,7 +67,7 @@ const CombosAndOffersModal = (props) => {
       shouldCloseOnEsc={false}
     >
       <div className='flex items-end justify-end' onClick={props.onClose} >
-      <IoCloseSharp size={32}  className=' text-white hover:text-pink-300 hover:scale-110'/>
+      <IoCloseSharp size={32} className='text-black hover:cursor-pointer hover:text-pink-300 hover:scale-110'/>
       </div>
       <h2 className="text-4xl font-bold mb-4 text-yellow-100 text-center">Combo Offer</h2>
       <div className="flex flex-col gap-4 px-5">

@@ -112,18 +112,8 @@ const Navbar = (props) => {
 
               {/* Dropdown Menu */}
               {isDropdownOpen && (
-                <div className="absolute right-5 mt-4 w-28 bg-transparent rounded-md  z-250 text-white font-bold shadow-md shadow-white">
+                <div className="absolute right-5 mt-4 w-28 bg-transparent rounded-md z-250 text-white font-bold shadow-md shadow-white">
                   <ul className="py-1 text-gray-yellow ">
-                    <li>
-                      <Link
-                        to="/recommend"
-                        className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md shadow-caribbeangreen-200 hover:text-yellow-200"
-                        onClick={closeDropdown}
-                      >
-                        Top Picks
-                      </Link>
-                    </li>
-
                     <li>
                       <Link
                         to="/profile"
@@ -131,6 +121,15 @@ const Navbar = (props) => {
                         onClick={closeDropdown}
                       >
                        Profile
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/recommend"
+                        className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md shadow-caribbeangreen-200 hover:text-yellow-200"
+                        onClick={closeDropdown}
+                      >
+                        Top Picks
                       </Link>
                     </li>
                     <li>
