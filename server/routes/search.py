@@ -67,9 +67,9 @@ def combo():
         if not user:
             return {"error": "User not found"}, 400
         product = request.form['uniq_id']
-        similarProduct = recommender.recommendations(product, 1)
+        similarProduct = recommender.recommendations(product, 2)
         similarProduct = similarProduct.tolist()
-        similarProduct = collection.find_one({'uniq_id': similarProduct[0]}, {'_id': 0})
+        similarProduct = collection.find_one({'uniq_id': similarProduct[1]}, {'_id': 0})
         return {"similarProduct": similarProduct}, 200
     except:
         return {"error": "Server error"}, 500

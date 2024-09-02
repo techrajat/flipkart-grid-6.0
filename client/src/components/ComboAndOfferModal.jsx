@@ -1,15 +1,26 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-const CombosAndOffersModal = ({ isOpen, onClose, selectedProduct, products }) => {
-  // Find products of the same type
-  const sameTypeProducts = products.filter(product => product.type === selectedProduct.type && product.id !== selectedProduct.id);
+const CombosAndOffersModal = ({ isOpen, onClose, comboProducts }) => {
+  if (comboProducts.length < 2) {
+    return (
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={onClose}
+        contentLabel="Combos and Offers"
+        className="modal-content"
+        overlayClassName="modal-overlay"
+      >
+        <h2 className="text-2xl font-bold mb-4">Combos and Offers</h2>
+        <p>No combo offers available.</p>
+        <button className="bg-red-500 text-white py-2 px-4 rounded mt-4" onClick={onClose}>
+          Close
+        </button>
+      </Modal>
+    );
+  }
 
-  // Randomly select one product of the same type
-  const randomProduct = sameTypeProducts[Math.floor(Math.random() * sameTypeProducts.length)];
-
-  // Calculate the discount price for the combo
-  const discountPrice = selectedProduct.price + randomProduct.price - 0.1 * (selectedProduct.price + randomProduct.price); // 10% discount
+  const [product1, product2] = comboProducts;
 
   return (
     <Modal
@@ -20,20 +31,33 @@ const CombosAndOffersModal = ({ isOpen, onClose, selectedProduct, products }) =>
       overlayClassName="modal-overlay"
     >
       <h2 className="text-2xl font-bold mb-4">Combo Offer</h2>
-      <div className="flex flex-col items-center">
-        <div className="flex gap-4 mb-4">
-          <div className="text-center">
-            <img src={selectedProduct.image} alt={selectedProduct.name} className="h-32 w-32 object-cover" />
-            <p>{selectedProduct.name}</p>
-            <p>Price: ₹{selectedProduct.price}</p>
-          </div>
-          <div className="text-center">
-            <img src={randomProduct.image} alt={randomProduct.name} className="h-32 w-32 object-cover" />
-            <p>{randomProduct.name}</p>
-            <p>Price: ₹{randomProduct.price}</p>
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center border p-4 rounded">
+          <img
+            src={product1.image[0]}
+            alt={product1.product_name}
+            className="w-32 h-32 object-cover rounded"
+          />
+          <div className="ml-4">
+            <h3 className="text-xl font-bold">{product1.name}</h3>
+            <p>Price: ₹{product1.retail_price}</p>
           </div>
         </div>
-        <p className="text-xl font-bold text-green-500">Combo Price: ₹{discountPrice.toFixed(2)}</p>
+        <div className="flex items-center border p-4 rounded">
+          <img
+            src={product2.image[0]}
+            alt={product2.product_name}
+            className="w-32 h-32 object-cover rounded"
+          />
+          <div className="ml-4">
+            <h3 className="text-xl font-bold">{product2.name}</h3>
+            <p>Price: ₹{product2.retail_price}</p>
+          </div>
+        </div>
+      </div>
+      <div className="mt-4">
+        <h4 className="text-lg font-semibold">Combo Price: ₹{(product1.retail_price + product2.retail_price) * 0.9}</h4>
+        <p>Get both products at a 10% discount!</p>
       </div>
       <button className="bg-red-500 text-white py-2 px-4 rounded mt-4" onClick={onClose}>
         Close
