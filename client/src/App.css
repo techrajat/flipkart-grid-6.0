@@ -182,3 +182,32 @@ html, body {
   -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
   scrollbar-width: none; /* Hide scrollbar on Firefox */
 }
+
+
+/* Add these styles in your CSS file or inside a <style> tag */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  outline: none;
+  z-index: 1001;
+}
