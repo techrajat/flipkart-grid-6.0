@@ -4,7 +4,7 @@ import blackhole from "../assets/blackhole.webm";
 
 const Hero = () => {
   return (
-    <div className="h-screen w-screen relative flex flex-col z-10" id="about-me">
+    <div className="h-screen w-screen absolute flex flex-col z-[-200]" id="about-me">
       <video
         autoPlay
         muted
