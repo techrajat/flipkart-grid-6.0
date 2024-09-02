@@ -7,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import CombosAndOffersModal from '../components/ComboAndOfferModal';
+import { IoStarSharp } from "react-icons/io5";
 
 const ProductDescription = (props) => {
   const { id } = useParams();
@@ -182,10 +183,10 @@ const ProductDescription = (props) => {
         </Swiper>
       </div>
 
-      <div className="lg:w-[50%] w-full text-richblack-100 flex flex-col justify-center p-6 gap-4">
+      <div className="lg:w-[50%] w-full text-richblack-100 flex flex-col justify-center p-6 gap-1">
         <h1 className="text-4xl font-bold mb-4">{product.product_name}</h1>
+        <p className="text-lg text-green-600 mb-4"><div className="flex items-center justify-start gap-1 text-caribbeangreen-50">{product.product_rating} <IoStarSharp /> <span className="text-richblack-200">{product.overall_rating} Ratings</span></div></p>
         <p id="retailPrice" className="text-2xl text-green-600 mb-4">₹{product.retail_price}</p>
-        <p className="text-2xl text-green-600 mb-4">Rating: {product.product_rating}</p>
         <p className="text-gray-700 mb-6">
           {product.description.length > 300 ? `${product.description.substring(0, 200)}...` : product.description}
         </p>
@@ -200,10 +201,6 @@ const ProductDescription = (props) => {
         </button>
         
       </div>
-      <button className="bg-pink-500 hover:bg-pink-200 text-white py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105" onClick={handleOpenModal}>
-          View Combos and Offers
-        </button>
-
       <CombosAndOffersModal isOpen={modalIsOpen} onClose={handleCloseModal} comboProducts={comboProducts} intent={props.intent} setIntent={props.setIntent} setCart={props.setCart} />
     </div>
   );
