@@ -7,28 +7,14 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import CombosAndOffersModal from '../components/ComboAndOfferModal';
-import {products} from "../components/ProductsData";
-
-
 
 const ProductDescription = (props) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [images, setImages] = useState([]);
-  const [comboProduct, setComboProduct] = useState({});
-
+  const [comboProducts, setComboProducts] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  
-
-  const handleOpenModal = () => {
-    setModalIsOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setModalIsOpen(false);
-  };
-  
 
   const getProduct = async () => {
     const response = await fetch("http://127.0.0.1:5000/getproduct", {
@@ -42,6 +28,7 @@ const ProductDescription = (props) => {
       setImages(Array.isArray(res.product.image) ? res.product.image : [res.product.image]);
       props.setCurrProduct(id);
       props.setCurrPrice(res.product.retail_price);
+      setComboProducts([res.product]);
     }
   };
 
@@ -132,7 +119,7 @@ const ProductDescription = (props) => {
     //eslint-disable-next-line
   }, [props.intent]);
 
-  const getComboProduct = async()=>{
+  const handleOpenModal = async () => {
     const response = await fetch("http://127.0.0.1:5000/combo", {
       method: "POST",
       headers: {
@@ -143,10 +130,14 @@ const ProductDescription = (props) => {
     });
     if (response.status === 200) {
       const res = await response.json();
-      setComboProduct(res.similarProduct);
-      console.log(res.similarProduct)
+      setComboProducts(comboProducts.concat(res.similarProduct));
+      setModalIsOpen(true);
     }
-  }
+  };
+
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
+  };
 
   if (!product) {
     return (
@@ -201,7 +192,7 @@ const ProductDescription = (props) => {
           View Combos and Offers
         </button>
 
-      <CombosAndOffersModal isOpen={modalIsOpen} onClose={handleCloseModal} selectedproduct={product}  products={products} />
+      <CombosAndOffersModal isOpen={modalIsOpen} onClose={handleCloseModal} comboProducts={comboProducts} />
     </div>
   );
 };
