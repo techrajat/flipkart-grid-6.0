@@ -38,7 +38,7 @@ const Navbar = (props) => {
   };
 
   return (
-    <nav className="relative bottom-8 text-white py-3 h-2 z-[500] w-full">
+    <nav id="navBar" className="relative bottom-8 text-white py-3 h-2 z-[260] w-full">
       <div className="container mx-auto flex justify-between items-center h-full">
         <div className="relative left-8 text-3xl flex gap-4 items-center justify-center font-bold text-white px-4 py-2 shadow-md shadow-pink-200">
           <Link to="/">
@@ -53,6 +53,7 @@ const Navbar = (props) => {
                 isActive ? "text-yellow-200" : ""
               }`
             }
+            id="homeBtn"
           >
             <FaHome size={24} />
             Home
@@ -88,9 +89,9 @@ const Navbar = (props) => {
             </NavLink>
           ) : <div></div>}
           {props.logged ? (
-            <div>
+            <div className="z-[250]">
               <button
-                className="relative  right-10  text-white font-bold focus:outline-none px-4 py-2 shadow-md shadow-caribbeangreen-100  hover:text-yellow-100"
+                className="relative   right-10  text-white font-bold focus:outline-none px-4 py-2 shadow-md shadow-caribbeangreen-100  hover:text-yellow-100"
                 onClick={toggleDropdown}
               >
                 {name}
@@ -112,12 +113,12 @@ const Navbar = (props) => {
 
               {/* Dropdown Menu */}
               {isDropdownOpen && (
-                <div className="absolute right-5 mt-4 w-28 bg-transparent rounded-md z-250 text-white font-bold shadow-md shadow-white">
-                  <ul className="py-1 text-gray-yellow ">
+                <div className="absolute mt-4 w-28 bg-transparent rounded-md  text-white font-bold shadow-md shadow-white">
+                  <ul className="py-1 text-gray-yellow z-[300]">
                     <li>
                       <Link
                         to="/profile"
-                        className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md shadow-caribbeangreen-200 hover:text-yellow-200"
+                        className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md  shadow-caribbeangreen-200 hover:text-yellow-200"
                         onClick={closeDropdown}
                       >
                        Profile
@@ -126,7 +127,7 @@ const Navbar = (props) => {
                     <li>
                       <Link
                         to="/recommend"
-                        className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md shadow-caribbeangreen-200 hover:text-yellow-200"
+                        className="block px-4 py-2  text-sm hover:bg-gray-100 shadow-md shadow-caribbeangreen-200 hover:text-yellow-200"
                         onClick={closeDropdown}
                       >
                         Top Picks
@@ -135,7 +136,7 @@ const Navbar = (props) => {
                     <li>
                       <Link
                         to="/order"
-                        className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md shadow-caribbeangreen-200 hover:text-yellow-200"
+                        className="block px-4 py-2 text-sm hover:bg-gray-100 shadow-md  shadow-caribbeangreen-200 hover:text-yellow-200"
                         onClick={closeDropdown}
                       >
                        My Orders

@@ -40,6 +40,8 @@ export function Avatar(props) {
   const { animations: pointingAnimation } = useFBX("/animations/Pointing.fbx");
   const { animations: saluteAnimation } = useFBX("/animations/Salute.fbx");
   const { animations: thankfulAnimation } = useFBX("/animations/Thankful.fbx");
+  const { animations: golfDriveAnimation } = useFBX("/animations/GolfDrive.fbx");
+  const { animations: entryAnimation } = useFBX("/animations/Entry.fbx");
 
   idleAnimation[0].name = "Idle";
   greetingAnimation[0].name = "Greeting";
@@ -48,9 +50,11 @@ export function Avatar(props) {
   pointingAnimation[0].name = "Pointing";
   saluteAnimation[0].name = "Salute";
   thankfulAnimation[0].name = "Thankful";
+  golfDriveAnimation[0].name = "GolfDrive";
+  entryAnimation[0].name = "Entry";
 
   const group = useRef();
-  const { actions } = useAnimations([idleAnimation[0], greetingAnimation[0], talkingAnimation[0], listeningAnimation[0], pointingAnimation[0], saluteAnimation[0], thankfulAnimation[0]], group);
+  const { actions } = useAnimations([idleAnimation[0], greetingAnimation[0], talkingAnimation[0], listeningAnimation[0], pointingAnimation[0], saluteAnimation[0], thankfulAnimation[0], golfDriveAnimation[0], entryAnimation[0]], group);
 
   useEffect(() => {
     const synth = window.speechSynthesis;

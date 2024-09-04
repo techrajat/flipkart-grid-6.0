@@ -14,6 +14,7 @@ const CombosAndOffersModal = (props) => {
     props.comboProducts[1].quantity = 1;
     props.setCart(props.comboProducts);
     props.setIntent("final_checkout");
+    document.getElementById('navBar').style.zIndex = '260';
     navigate('/checkout');
   }
 
@@ -21,6 +22,7 @@ const CombosAndOffersModal = (props) => {
     props.comboProducts[0].quantity = 1;
     props.setCart([props.comboProducts[0]]);
     props.setIntent("final_checkout");
+    document.getElementById('navBar').style.zIndex = '260';
     navigate('/checkout');
   }
 
@@ -67,9 +69,9 @@ const CombosAndOffersModal = (props) => {
       shouldCloseOnEsc={false}
     >
       <div className='flex items-end justify-end' onClick={props.onClose} >
-      <IoCloseSharp size={32} className='text-black hover:cursor-pointer hover:text-pink-300 hover:scale-110'/>
+      <IoCloseSharp size={32} className='text-black hover:cursor-pointer hover:text-pink-300 hover:scale-110 z-[250]'/>
       </div>
-      <h2 className="text-4xl font-bold mb-4 text-yellow-100 text-center">Combo Offer</h2>
+      <h2 className="text-4xl font-bold relative bottom-10 text-yellow-100 text-center">Combo Offer</h2>
       <div className="flex flex-col gap-4 px-5">
         <div className='flex flex-row gap-10 justify-center'>
 

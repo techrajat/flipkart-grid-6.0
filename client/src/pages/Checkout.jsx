@@ -104,8 +104,8 @@ const CheckoutPage = (props) => {
   
   return (
     <div className="min-h-screen p-6 flex justify-start items-center bg-transparent z-[120] text-richblack-25 ">
-      <div className=" w-full max-w-5xl bg-transparent p-6 rounded-lg shadow-lg shadow-richblack-100 relative ">
-        <h1 className="text-5xl font-bold mb-6 text-center">Checkout</h1>
+      <div className=" relative top- w-full max-w-4xl bg-transparent p-6 rounded-lg shadow-lg shadow-richblack-100  ">
+        <h1 className="text-3xl font-bold relative top-2 text-center">Checkout</h1>
         <form
           onSubmit={handleSubmit}
           className="relative space-y-8 flex flex-row w-full gap-10"
@@ -122,7 +122,7 @@ const CheckoutPage = (props) => {
                   placeholder="Full Name"
                   value={shippingInfo.name}
                   onChange={handleShippingChange}
-                  className="p-2 border border-gray-300 rounded-lg bg-transparent"
+                  className="p-2 border border-gray-700 rounded-lg bg-transparent"
                   required
                 />
                 <input
@@ -228,8 +228,8 @@ const CheckoutPage = (props) => {
           <div className="flex items-center justify-between w-[40%] h-full">
             <div className="border-t border-gray-300 pt-4 space-y-4 overflow-y-auto max-h-[60vh] no-scrollbar">
               <h2 className="text-2xl font-semibold mb-4">Review Your Order</h2>
-              <div className="border-t border-gray-300 pt-4">
-                <p className="text-lg font-semibold">Item Summary:</p>
+              <div className="border-t border-gray-300 pt-4 ">
+                <p className="text-lg font-semibold bottom-3 relative">Item Summary:</p>
                 {selectedProducts.map((product) => (
                   <div
                     key={product.uniq_id}
@@ -255,7 +255,7 @@ const CheckoutPage = (props) => {
                 ))}
               </div>
               <div />
-              <div className=" bg-richblack-900 text-caribbeangreen-100 p-4 shadow-md shadow-caribbeangreen-100 border-t gap-x-20 flex justify-between items-center max-w-3xl mx-auto z-50">
+              <div className=" bg-richblack-900 text-caribbeangreen-100 p-4 shadow-md shadow-caribbeangreen-100 border-t gap-x-2 w-full flex justify-between items-center max-w-2xl mx-auto z-50">
                 <p className="text-lg font-semibold text-gray-700 w-full">
                   {" "}
                   Total: ₹{calculateTotal()}
@@ -263,7 +263,7 @@ const CheckoutPage = (props) => {
                 <button
                   type="submit"
                   onClick={handleCompletePurchase}
-                  className="bg-blue-500 text-white py-3 px-6 mt-4 rounded-lg shadow-md hover:bg-blue-600 transition-colors w-full"
+                  className="bg-blue-500 text-md text-white py-2  mt-2 rounded-lg shadow-md hover:bg-blue-600 transition-colors w-[350px] "
                 >
                    Complete Purchase
                 </button>
