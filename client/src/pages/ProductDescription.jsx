@@ -57,13 +57,14 @@ const ProductDescription = (props) => {
       }
       setComboProducts([originalProduct, res.similarProduct]);
       setModalIsOpen(true);
-      const price = (originalProduct.retail_price + res.similarProduct.retail_price) * 0.9;
+      document.getElementById('navBar').style.zIndex = '100';
+      const price = ((originalProduct.retail_price + res.similarProduct.retail_price) * 0.9).toFixed(2);
       const comboResponses = [
-        `Customers who loved ${product.product_name} also went for ${res.similarProduct.product_name}. Grab both now for just ${price} rupees!`,
-        `Bundle deal! Pair ${product.product_name} with ${res.similarProduct.product_name} for only ${price} rupees. It's a win-win!`,
-        `Why stop at ${product.product_name}? Add ${res.similarProduct.product_name} to your cart too and enjoy the combo for ${price} rupees!`,
-        `Double the value! Get ${product.product_name} and ${res.similarProduct.product_name} together for just ${price} rupees.`,
-        `Complete your purchase with ${res.similarProduct.product_name} alongside ${product.product_name}. Special combo offer at ${price} rupees!`,
+        `Customers who loved ${product.product_name} also went for ${res.similarProduct.product_name}. Grab both now for just ${price} rupees with a 10% discount!`,
+        `Bundle deal! Pair ${product.product_name} with ${res.similarProduct.product_name} for only ${price} rupees, saving you 10%! It's a win-win!`,
+        `Why stop at ${product.product_name}? Add ${res.similarProduct.product_name} to your cart too and enjoy the combo for ${price} rupees, including a 10% discount!`,
+        `Double the value! Get ${product.product_name} and ${res.similarProduct.product_name} together for just ${price} rupees with a 10% savings!`,
+        `Complete your purchase with ${res.similarProduct.product_name} alongside ${product.product_name}. Special combo offer at ${price} rupees with a 10% discount!`
       ]
       const randomResponse = comboResponses[Math.floor(Math.random() * comboResponses.length)];
       props.setText(randomResponse);
@@ -72,6 +73,7 @@ const ProductDescription = (props) => {
 
   const handleCloseModal = () => {
     setModalIsOpen(false);
+    document.getElementById('navBar').style.zIndex = '260';
   };
 
   useEffect(() => {
@@ -183,12 +185,12 @@ const ProductDescription = (props) => {
         </Swiper>
       </div>
 
-      <div className="lg:w-[50%] w-full text-richblack-100 flex flex-col justify-center p-6 gap-1">
+      <div className="relative bottom-12 lg:w-[50%] w-full text-richblack-100 flex flex-col justify-center p-6 gap-1">
         <h1 className="text-4xl font-bold mb-4">{product.product_name}</h1>
         <p className="text-lg text-green-600 mb-4"><div className="flex items-center justify-start gap-1 text-caribbeangreen-50">{product.product_rating} <IoStarSharp /> <span className="text-richblack-200">{product.overall_rating} Ratings</span></div></p>
         <p id="retailPrice" className="text-2xl text-green-600 mb-4">₹{product.retail_price}</p>
         <p className="text-gray-700 mb-6">
-          {product.description.length > 300 ? `${product.description.substring(0, 200)}...` : product.description}
+          {product.description.length > 150 ? `${product.description.substring(0, 150)}...` : product.description}
         </p>
         <button className="bg-blue-500 hover:bg-blue-200 text-white py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105" onClick={handleAddToCart}>
           Add to Cart

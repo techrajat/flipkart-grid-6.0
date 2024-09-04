@@ -84,8 +84,8 @@ html, body {
   display: flex;
   justify-items: center;
   align-items: center;
-  width: 25rem;
-  height: 15rem;
+  width: 30rem;
+  height: 14rem;
   border-radius: 1rem;
   object-fit: cover;
 }
@@ -187,18 +187,24 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 190;
+  z-index: 210;
+  display:relative;
+  right:20px
 }
 
 .modal-content {
   position: relative;
   background-color: white;
-  
   padding: 20px;
   border-radius: 8px;
+  box-sizing: border-box;
   max-width: 600px;
   height:auto;
   width: 100%;
   outline: none;
-  z-index: 191;
+  z-index: 210;
+}
+
+.h-screen {
+  height: 96.2vh;
 }

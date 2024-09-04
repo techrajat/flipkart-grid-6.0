@@ -35,7 +35,7 @@ export default function App() {
   return (
     <div className="max-h-screen min-w-screen flex flex-col font-inter bg-black overflow-y-hidden overflow-x-hidden">
       <Navbar logged={logged} setLogged={setLogged} logout={logout} setLogoutModal={setLogoutModal} cart={cart}/>
-      <div className="absolute flex w-full lg:w-[30%] max-w-full h-auto lg:h-[87%] justify-center z-[200] top-24 right-0">
+      <div className="absolute flex w-full lg:w-[30%] max-w-full h-auto lg:h-[78%] justify-center z-[250] top-24 right-0">
         <AvatarContainer text={text} setText={setText} setAudioTranscript={setAudioTranscript} intent={intent} setIntent={setIntent} animation={animation} setAnimation={setAnimation} currProduct={currProduct} negotiatedPrice={negotiatedPrice} setNegotiatedPrice={setNegotiatedPrice} currPrice={currPrice} setCurrPrice={setCurrPrice} />
       </div>
       <StarsCanvas />

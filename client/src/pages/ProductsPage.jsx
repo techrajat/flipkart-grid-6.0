@@ -39,10 +39,10 @@ const ProductsPage = (props) => {
   }, [props.audioTranscript]);
 
   return (
-    <div className='relative top-10 w-[70%] left-6 z-[100] shadow-lg'>
+    <div className='relative bottom-5 w-[70%] left-6 z-[100] shadow-lg'>
       {/* <h1 className='relative text-yellow-200 text-5xl text-center font-bold top-[100px] shadow-lg shadow-pink-200 '>Welcome To FlipBuddy shopping app</h1> */}
       <div className='mt-[100px] relative min-h-screen min-w-screen'>
-        <ProductsSlider products={products} />
+        <ProductsSlider id="recommendSlider" products={products} />
       </div>
 
     </div>

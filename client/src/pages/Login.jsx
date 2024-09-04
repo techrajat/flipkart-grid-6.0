@@ -27,7 +27,7 @@ export default function Login(props) {
         props.setLogged(true);
         props.setText(`Hello ${user.name.split(' ')[0]}! How are you? Click on me to speak.`);
         props.setAnimation("Greeting");
-        navigate("/recommend");
+        navigate("/");
       } else {
         data = await data.json();
         document.getElementById("warn").innerHTML = data.error;

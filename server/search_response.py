@@ -100,7 +100,7 @@ def filter_response(desc, n):
             price = nums[0]
             for id in uniq_ids:
                 product = collection.find_one({'uniq_id': id}, {'_id': 0})
-                if product['discounted_price'] <= price:
+                if product and product['retail_price'] <= price:
                     products.append(product)
             response = under_response(price)
         else:
@@ -109,7 +109,7 @@ def filter_response(desc, n):
             upper = int(price * 1.25)
             for id in uniq_ids:
                 product = collection.find_one({'uniq_id': id}, {'_id': 0})
-                if product['discounted_price'] >= lower and product['discounted_price'] <= upper:
+                if product and product['retail_price'] >= lower and product['retail_price'] <= upper:
                     products.append(product)
             response = around_response(price)
     else:
@@ -117,7 +117,7 @@ def filter_response(desc, n):
         upper = nums[1]
         for id in uniq_ids:
             product = collection.find_one({'uniq_id': id}, {'_id': 0})
-            if product['discounted_price'] >= lower and product['discounted_price'] <= upper:
+            if product and product['retail_price'] >= lower and product['retail_price'] <= upper:
                 products.append(product)
         response = range_response(lower, upper)
 

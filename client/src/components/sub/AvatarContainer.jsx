@@ -70,7 +70,7 @@ const AvatarContainer = (props) => {
           props.setIntent("combo");
         }
         else {
-          props.setAnimation("Thankful");
+          props.setAnimation("GolfDrive");
           getCheckoutResponse();
         }
       }
@@ -104,7 +104,7 @@ const AvatarContainer = (props) => {
 
   useEffect(()=>{
     if(props.intent === "final_checkout") {
-      props.setAnimation("Thankful");
+      props.setAnimation("GolfDrive");
       getCheckoutResponse();
       props.setIntent("");
     }
