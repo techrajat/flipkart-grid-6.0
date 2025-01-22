@@ -100,6 +100,6 @@ MONGO_URI = "your-mongodb-connection-string"
 ## Usage  
 1. Open the frontend in your browser at [http://localhost:3000](http://localhost:3000).  
 2. Ensure the backend is running at [http://localhost:5000](http://localhost:5000).  
-3. Interact with FlipBuddy through voice commands or text inputs and experience its AI-driven recommendations.  
+3. Interact with FlipBuddy through voice commands and experience its AI-driven recommendations.  
 
 ---
