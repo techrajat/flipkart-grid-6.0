@@ -1,4 +1,4 @@
-https://github.com/user-attachments/assets/7c1246e5-5fad-4c46-b244-13742b714423
+https://github.com/user-attachments/assets/c0cb5e2b-8494-4365-83d8-edd9d041383e
 
 # FlipBuddy - Digital Salesperson  
 FlipBuddy is a digital salesperson designed to engage in real-time conversations, answer complex queries, and offer personalized recommendations. Developed for **Flipkart Grid 6.0 (Software Development Track)**, FlipBuddy aims to revolutionize the shopping experience by simulating human-like interactions using advanced AI technologies.
